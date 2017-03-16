@@ -1,0 +1,45 @@
+{
+  "ProjectName": "HDR",
+  "ProjectGuid": "2396fd11-7cda-4d7f-8e3d-e8fc380c0d12",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.HDR",
+  "DisplayName": "HDR",
+  "Author": "",
+  "Description": "HDR",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "4.0.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "true",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{35dbf439-e111-450c-b777-6156b44c9317}",
+  "WP8ProductID": "{6c6c648f-54a1-4816-94a7-5d66dd11d121}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.HDR",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}
