@@ -1,0 +1,51 @@
+<div data-role="view" data-title="NUEVO ENVÍO" data-layout="main" data-model="app.nuevoservicio" data-show="app.nuevoservicio.onShow"
+    data-after-show="app.nuevoservicio.afterShow" data-init="app.nuevoservicio.onInit">
+    <header data-role="header">
+        <div data-role="navbar">
+            <span data-role="view-title"></span>
+            <a data-align="left" class="fa fa-reply" href="components/Menu/menu.html" aria-hidden="true" data-role="button"></a>
+        </div>
+    </header>
+    <div class="content" style=" padding: 30px 0px;">
+        <div class="container">
+            <div class="row">
+                <form id="nuevo-envio">
+                    <div class="col-md-12"> <input id="comboboxempresaNue" class="form-control" placeholder="Empresa"> </div>
+                    <div class="col-md-12">
+                    <input id="comboboxproductoNue" type="text" class="form-control" placeholder="Tipo Producto"> </div>
+                    <div class="col-md-12"> <input id="fecharecogeNue"  name="start" class="form-control" placeholder="Fecha Solicitada">                        </div>
+                    <div class="col-md-12">
+                        <input id="origenNue" type="text" class="form-control" placeholder="Dirección de origen">
+                    </div>
+                    <div class="col-md-12">
+                        <input id="destinoNue" type="text" class="form-control" placeholder="Dirección de destino">
+                    </div>
+                    <div class="col-md-12">
+                        <input id="tramiteNue" type='checkbox'/>
+                        <strong>Incluye trámite</strong>
+                        <br>
+                        <input id="idavueltaNue" type='checkbox' />
+                        <strong>Ida y vuelta</strong>
+                        <br>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group" style="margin-top: 10px;"> 
+                            <input id="entregaNue" type="text" class="form-control" placeholder="Persona que entrega">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group" style="margin-top: 10px;"> 
+                            <input id="recibeNue" type="text" class="form-control" placeholder="Persona que recibe">
+                        </div>
+                    </div>
+                    <div class="col-md-12"> 
+                        <textarea id="observacionesNue" class="form-control" rows="3" placeholder="Observaciones"></textarea> 
+                        <a  id="guardar" type="submit" class="btn btn-primary btn-block btn-lg">COTIZAR ENVÍO
+                        </a> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -159,7 +159,6 @@
 #kendoUiMobileApp .imageListItem {
     overflow: hidden;
     width: 100%;
-    margin: 0;
 }
 
 #kendoUiMobileApp.km-ios7 .button-group .km-button.primary {
@@ -188,59 +187,6 @@ Fields
 
 #kendoUiMobileApp label.field {
     display: block;
-}
-
-
-/*Image Gallery field*/
-
-#kendoUiMobileApp .field--gallery .field__label {
-    margin-bottom: 0.5em;
-}
-
-#kendoUiMobileApp .field--gallery .field__content {
-    list-style-type: none;
-    padding: 0 0 1px 0;
-}
-
-#kendoUiMobileApp .field--gallery .field__content .km-virtual-page {
-    bottom: 0;
-    margin-right: 1px;
-}
-
-#kendoUiMobileApp .field--gallery .field__content .gallery__items {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-    -ms-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    -ms-justify-content: center;
-    justify-content: center;
-    height: 100%;
-}
-
-#kendoUiMobileApp .field--gallery .field__content .gallery__items img {
-    max-height: 100%;
-}
-
-#kendoUiMobileApp .field--gallery:not(.field--gallery-slider) .field__content .gallery__items {
-    position: relative;
-    margin-bottom: 1em;
-}
-
-#kendoUiMobileApp .field--gallery:not(.field--gallery-slider) .field__content .gallery__items:after {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 1px;
-    bottom: -0.5em;
-    content: "";
-}
-
-#kendoUiMobileApp .field--gallery:not(.field--gallery-slider) .field__content .gallery__items:last-child:after {
-    display: none;
 }
 
 
@@ -419,7 +365,7 @@ Fields
     cursor: pointer;
 }
 
-#kendoUiMobileApp .field__content-info {
+#kendoUiMobileApp .file-upload-name {
     display: block;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -523,11 +469,6 @@ Fields
     border-radius: 3px;
 }
 
-#kendoUiMobileApp .km-modalview-root .k-animation-container {
-    height: 100% !important;
-    width: 100% !important;
-}
-
 #kendoUiMobileApp .km-modalview-wrapper {
     position: fixed !important;
     top: 10%;
@@ -563,28 +504,6 @@ Fields
 
 #kendoUiMobileApp .mapView {
     height: 300px;
-}
-
-
-/*Custom notification*/
-
-#kendoUiMobileApp .notify-pop-up {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    bottom: 65px;
-    z-index: 999;
-    text-align: center;
-    display: none;
-}
-
-#kendoUiMobileApp .notify-pop-up__content {
-    display: inline-block;
-    color: #fff;
-    padding: 20px 30px;
-    background: #606060;
-    border-radius: 30px;
-    font-size: 1.2em;
 }
 
 

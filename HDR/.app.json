@@ -15,9 +15,9 @@
   "navigation": "tabstrip",
   "view": "home",
   "transition": "slide",
-  "showMoreTab": true,
+  "showMoreTab": false,
   "skin": "nova",
-  "skinMainColor": "#32364c",
+  "skinMainColor": "#ffffff",
   "skinTextColor": "#ffffff",
-  "skinAccentColor": "#ff4350"
+  "skinAccentColor": "#2E3191"
 }

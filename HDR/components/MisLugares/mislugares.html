@@ -1,0 +1,36 @@
+<div id="mislugares" data-role="view" data-title="Mis Lugares" data-layout="main" data-model="app.mislugares" data-after-show="app.mislugares.afterShow"
+    data-show="app.mislugares.onShow" style="width: 100%; height: 100%; position: absolute;">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-align="left" class="fa fa-reply" href="components/Perfil/perfil.html" aria-hidden="true" data-role="button"></a>
+            <span data-role="view-title"></span> </div>
+    </header>
+    <div class="container" id="contenedor">
+        <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading c-list">
+                    </div>
+                    <ul class="list-group" id="services-list">
+                        <li class="list-group-item">
+                            <div class="col-xs-12 col-sm-9" id="divo">
+                                <div class="col-xs-12 col-sm-9" id="divo">
+                                    <ul data-role="listview" data-click="app.mislugares.listViewClick" data-bind="source: lugares" data-fixed-headers="true" data-template="my-template" data-pull-to-refresh="true" data-append-on-refresh="false">
+                                    </ul>
+                                    <script type="text/x-kendo-template" id="my-template">
+                                        <span class="name">
+											<p class="item-info">#: Nombre #</p>
+                                            <p class="item-info">#: streetAddr1 #</p>
+										</span>
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

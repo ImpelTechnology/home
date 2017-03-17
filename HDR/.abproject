@@ -1,13 +1,13 @@
 {
   "ProjectName": "HDR",
-  "ProjectGuid": "2396fd11-7cda-4d7f-8e3d-e8fc380c0d12",
+  "ProjectGuid": "76acb2e5-a273-4247-bf3e-cfbed8b875f0",
   "projectVersion": 1,
-  "AppIdentifier": "com.telerik.HDR",
-  "DisplayName": "HDR",
-  "Author": "",
-  "Description": "HDR",
-  "BundleVersion": "1.0",
-  "AndroidVersionCode": "1",
+  "AppIdentifier": "com.telerik.HomeDelivery",
+  "DisplayName": "Home Delivery",
+  "Author": "Willberth Muñoz",
+  "Description": "Home Delivery",
+  "BundleVersion": "2.0",
+  "AndroidVersionCode": "4",
   "iOSDeviceFamily": [
     "1",
     "2"
@@ -32,10 +32,10 @@
     "ID_CAP_WEBBROWSERCOMPONENT"
   ],
   "WP8Requirements": [],
-  "WP8PublisherID": "{35dbf439-e111-450c-b777-6156b44c9317}",
-  "WP8ProductID": "{6c6c648f-54a1-4816-94a7-5d66dd11d121}",
+  "WP8PublisherID": "{5a97a46c-a2a7-4015-a171-82c3705d2ade}",
+  "WP8ProductID": "{814368d9-2a0c-4368-80bb-651f9c9f4def}",
   "WPSdk": "8.0",
-  "WP8PackageIdentityName": "1234Telerik.HDR",
+  "WP8PackageIdentityName": "1234Telerik.HomeDelivery",
   "WP8WindowsPublisherName": "CN=Telerik",
   "WP8SupportedResolutions": [
     "ID_RESOLUTION_WVGA",

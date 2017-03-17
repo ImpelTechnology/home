@@ -1,0 +1,184 @@
+
+body{
+  background:#fff;
+}
+.form-control:focus {
+    border-color: #d5d6dd;
+    box-shadow: none;
+    outline: 0 none;
+}
+.form-signin{ padding: 0 30px;}
+.panel > .list-group .list-group-item:first-child {
+    /*border-top: 1px solid rgb(204, 204, 204);*/
+}
+.form-control, .form-group .form-control{
+  background: #f5f5f5;
+  padding: 5px 10px;
+  line-height: 36px;
+  border-radius: 3px;
+  height: auto;
+  border: 1px solid #ebebeb;
+
+}
+
+.top-bar{
+	background-color: #2E3191;
+	padding: 35px 5px 15px 5px;
+}
+.top-bar h4{
+	margin: 0;
+}
+.nav-pills-icons li a{
+	font-size: 200%;
+	padding: 20px 15px;
+}
+.nav-pills-icons li{
+	border-bottom: 1px solid #e5e5e5;
+
+}
+.nav-stacked > li + li{
+	margin-top: 0px;;
+}
+
+.nav-pills-icons li a:hover, .nav-pills-icons li a:focus, .nav-stacked li a:hover, .nav-stacked li a:focus{
+
+ color: #2E3191;
+}
+.white{
+	color: white;
+}
+.form-control::-moz-placeholder,
+.form-group .form-control::-moz-placeholder {
+
+  line-height: 36px;
+}
+.form-control:-ms-input-placeholder,
+.form-group .form-control:-ms-input-placeholder {
+
+  line-height: 36px;
+}
+.form-control::-webkit-input-placeholder,
+.form-group .form-control::-webkit-input-placeholder {
+
+  line-height: 36px;
+}
+
+.form-horizontal .form-group{
+	margin-top: 0px;
+}
+
+.form-group .checkbox label, .form-group .radio label, .form-group label{
+	color: #666666;
+}
+
+.nav > li > a.services{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.nav-stacked > li{
+	border-bottom: 1px solid #ebebeb;
+}
+.s-arrow{
+	position: absolute;
+	top: 45%;
+	right: 5%;
+}
+.blue{
+	color: #2E3191;
+}
+ul.envio{
+	color: #2E3191;
+    font-size: 120%;
+    line-height: 150%;
+    font-weight: normal;
+}
+ul.envio strong{
+	color: #555;
+	font-weight: 400;
+}
+small.icon-text{
+	clear: both; display:block; color: #777; font-weight:normal;
+}
+.table-striped > tbody > tr > td, .table-striped > tbody > tr > th, .table-striped> tfoot > tr > td, .table-striped > tfoot > tr > th, .table-striped > thead > tr > td, .table-striped > thead > tr > th{
+	border-top: none;
+}
+.table-condensed > tbody > tr > td, .table-condensed  > tbody > tr > th, .table-condensed > tfoot > tr > td, .table-condensed > tfoot > tr > th, .table-condensed  > thead > tr > td, .table-striped > thead > tr > th{
+	padding: 8px;
+}
+strong{
+	font-weight: 400;
+}
+
+.profilebg{
+     background: url(../images/blurred-bg.jpg) no-repeat center center fixed;
+
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 15px;
+}
+
+.profilebg .img-circle {
+	border: 3px solid white;
+}
+ul.perfil-data{margin-top: 15px;}
+ul.perfil-data li{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #e1e1e1;
+
+
+}
+ul.lugares{
+	background-color: #fbfbfb;
+	padding:15px;
+	border: 1px solid #e1e1e1;
+	margin-bottom: 10px;
+}
+
+.form-group .form-control {
+    margin-bottom: 0px;
+}
+.input-group .input-group-addon{
+	background: #2E3191;
+	color: white;
+}
+.input-group .input-group-addon a{
+	color: white;
+}
+.checkbox label, .radio label, label{
+	color:#666666;
+}
+/*
+
+.nav-pills:not(.nav-pills-icons) > li > a{
+	border-radius: 3px;
+	text-align: left;
+	color:#2E3191;
+
+}
+*/
+.km-nova .km-external-link, .km-nova a:not([class]){
+    color:#2E3191!important;
+}
+
+@media (max-width: 767px) {
+    .visible-xs {
+        display: inline-block !important;
+    }
+    .block {
+        display: block !important;
+        width: 100%;
+        height: 1px !important;
+    }
+}
+
+.km-view .km-header .km-navbar{
+    background: #2e3191 !important;
+}

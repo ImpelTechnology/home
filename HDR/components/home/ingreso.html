@@ -1,0 +1,36 @@
+<div data-role="view" data-title="Home View" data-layout="main" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow" id="homeScreen" class="screen">
+
+    <!-- START_CUSTOM_CODE_home -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+    <div class="logo text-center">
+        <img src="images/logo.png" alt="logo" width="70%" height="auto">
+        <img src="images/slide1.jpg" alt="" width="100%" height="auto" style="margin-top:10px;">
+    </div>
+    <div class="container" id ="con" style="margin-top:15px;">
+        <form class="form-signin">
+            <label for="usuario" class="sr-only">Usuario</label>
+            <input type="email" id="usuario" class="form-control text-center" placeholder="Usuario" required autofocus>
+
+            <label for="contrase" class="sr-only">Contraseña</label>
+            <input type="password" id="contrase" class="form-control text-center" placeholder="Contraseña" required>
+
+<a id="linko" class="btn-link  text-center" style="display:inline-block; width:100%" onclick="recordarC()">¿Olvidaste tu contraseña?</a>
+<br>
+<br>
+            <a class="btn btn-lg btn-primary btn-block" type="submit" onclick="ingresar()">INGRESAR</a>
+            
+
+        	<ul data-role="listview" style="height: 42px;display:none;" >
+                <li style="border-bottom: 0px;text-align:center;">
+                    <label>Recordarme
+                        <input id ="Recordar" type="checkbox">
+                    </label>
+                </li>
+            </ul>
+            <br>
+            
+            <a class="btn btn-default btn-block btn-lg" onclick="crearcuenta()">Regístrate  &nbsp;<i class="fa fa-2x fa-plus-circle" aria-hidden="true"></i></span></a>
+        </form>
+    </div>
+    <!-- END_CUSTOM_CODE_home -->
+</div>

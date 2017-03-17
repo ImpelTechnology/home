@@ -1,0 +1,52 @@
+<div id="perfil" data-role="view" data-title="PERFIL" data-layout="main" data-model="app.perfil" data-after-show="app.perfil.afterShow"
+    data-show="app.perfil.onShow" data-init="app.perfil.onInit" style="width: 100%; height: 100%; position: absolute;">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-align="left" class="fa fa-arrow-left" href="components/Menu/menu.html" aria-hidden="true" data-role="button"></a>
+            <a class="fa fa-pencil-square-o white" href="components/EditarPerfil/editarperfil.html" aria-hidden="true"
+                data-align="right" data-role="button"> </a> <span data-role="view-title"></span> </div>
+    </header>
+    <div class="content" style="">
+        <div class="profilebg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-6">
+                        <div class="center-block text-center"> <img id="foto" src="images/nouser.jpeg" class="img-circle img-responsive"> </div>
+                    </div>
+                    <div class="col-xs-3"></div>
+                </div>
+                <div class="row">
+                    <h3 id="nombre" class="white text-center" style="margin-bottom: 0px;"></h3>
+                    <p id="nombreusuario" class="white text-center"></p> <br> </div>
+            </div>
+        </div>
+        <div style="margin-left: 15px; margin-right: 15px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-unstyled perfil-data">
+                            <!--<li id="Identificacion"><strong></strong></li>-->
+                            <li id="email"><strong></strong></li>
+                            <li id="direccion"><strong></strong></li>
+                            <li id="telefono"><strong></strong></li>
+                            <li id="celular"><strong></strong></li>
+                            <!--<a href="index.html#components/TerminosCondiciones/terminoscondiciones.html"><input id="aceptaterminos" type='checkbox' />Acepta términos y condiciones</a>-->
+                        </ul>
+                    </div>
+                </div>
+				<h2 style="float: right;" onclick="nuevoDir()">+</h2>
+                <div class="row">
+                    <h2 class="mis-lugares blue text-center">Mis Lugares</h2> 
+                    <ul data-role="listview" data-click="app.perfil.listViewClick" data-bind="source: lugares" data-fixed-headers="true"
+                        data-template="my-template2" class="list-unstyled perfil-data lugares"> </ul>
+                    <script type="text/x-kendo-template" id="my-template2"> <span class="name">
+											<p id="campi" class="item-info">#: Nombre #</p>
+                                            <p class="item-info">#: streetAddr1 #</p>
+										</span> </script>
+                    <!--<div class="col-md-6 form-group"> <button id="Mislugares" type="button">Mis lugares</button> </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

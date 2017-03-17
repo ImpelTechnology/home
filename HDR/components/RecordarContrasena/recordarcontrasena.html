@@ -1,0 +1,20 @@
+<div data-role="view" data-title="RECORDAR CONTRASEÑA" data-layout="main" data-model="app.recordarcontraseña" data-show="app.recordarcontraseña.onShow"
+    data-after-show="app.recordarcontraseña.afterShow" id="recordarcontraseña" class="screen">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-align="left" class="fa fa-reply" href="components/home/ingreso.html" aria-hidden="true" data-role="button"></a> <span data-role="view-title"></span> </div>
+    </header>
+    <div class="content" style=" padding: 30px 15px;">
+        <div class="container">
+            <form class="form-horizontal" id="registro">
+                <div class="form-group">
+                    <div class="col-xs-12"> <input type="email" class="form-control" id="correo" placeholder="Email" required="true"> </div>
+                </div>
+            </form>
+            <div class="form-group">
+                <div class="col-sm-12"> <button id="btn-registro" onclick="Recordar()" type="submit" class="btn btn-primary btn-block btn-lg">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

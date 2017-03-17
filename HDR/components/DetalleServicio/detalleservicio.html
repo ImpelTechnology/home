@@ -1,0 +1,56 @@
+<div id="detalleservicio" data-role="view" data-title="DETALLE DE ENVÍO" data-layout="main" data-model="app.detalleservicio"
+	data-after-show="app.detalleservicio.afterShow" data-show="buildMap" style="width: 100%; height: 100%; position: absolute;">
+	<header data-role="header">
+		<div data-role="navbar">
+			<a data-align="left" class="fa fa-reply" href="components/Servicios/servicios.html" aria-hidden="true" data-role="button"></a> 
+			<span data-role="view-title"></span>
+			<a data-align="right" class="fa fa-bars" href="#appDrawer" data-rel="drawer" data-role="button"></a>
+		</div>
+	</header>
+	<ul class="form-content" data-role="listview" data-style="inset">
+		<li class="form-content-item">
+			<div class="col-xs-4 text-center blue"> 
+				<i id="docs" class="fa fa-envelope fa-4x" aria-hidden="true" style="display:none;"></i>
+				<i id="paqu" class="fa fa-archive fa-4x" aria-hidden="true" style="display:none;"></i>
+
+			<small id="tipoProd" class="icon-text" style=""></small>
+			<small id="estado" class="icon-text" style=""></small> </div>
+			<div class="col-xs-8">
+				<ul class="list-unstyled envio">
+					<li id="precio"><strong>Valor:</strong> </li>
+					<li id="distancia"><strong>Distancia:</strong></li>
+					<li id="tramite"><strong>Incluye Trámite:</strong></li>
+					<li id="fecha"><strong>Fecha:</strong></li>
+				</ul>
+			</div>
+		</li>
+		<li class="form-content-item">
+			<div class="col-sm-12">
+				<table class="table table-condensed table-striped">
+					<tbody>
+						<tr>
+							<td><strong>Origen:</strong></td>
+							<td id="origen"></td>
+						</tr>
+						<tr>
+							<td><strong>Destino:</strong></td>
+							<td id="destino">Tipo trámite</td>
+						</tr>
+						<tr>
+							<td><strong>Responsable:</strong></td>
+							<td id="responsable"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</li>
+		<li class="form-content-item">
+			<div id="mapa" class="field field--location imageListItem km-label-above">
+				<!--<div class="field__label" data-bind="text: strings.home.homeModel.editableListForm20.dirOrigen.title"></div>-->
+				<div class="field__content">
+					<div id="map2" class="mapView"></div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
