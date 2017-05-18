@@ -3,7 +3,6 @@
 app.home = kendo.observable({
 	onShow: function () {
 		try {
-
 			if ((localStorage.getItem("HoDe.usuario")) && (localStorage.getItem("HoDe.contraseña")) && ((localStorage.getItem("HoDe.usuario")) != "") && ((localStorage.getItem("HoDe.contraseña")) != "")) {
 				document.getElementById('usuario').value = localStorage.getItem("HoDe.usuario");
 				document.getElementById('contrase').value = localStorage.getItem("HoDe.contraseña");
@@ -68,7 +67,7 @@ function ingresar() {
 				try {
 					var mensaje = JSON.parse(d.responseText);
 					if (mensaje.message == "Session expired or invalid login credentials") {
-						alert("Usuario o contraseña incorrectos");
+						mens("Usuario o contraseña incorrectos", "error");
 					}
 					kendo.ui.progress($("#homeScreen"), false);
 				} catch (i) {
@@ -120,9 +119,10 @@ function confirmar(u, c, id) {
 																		kendo.mobile.application.navigate("components/Menu/menu.html");
 																		//window.location = "index.html#components/Menu/menu.html";
 																	} else {
-																		alert("Contraseña incorrecta");
+																		mens(" Contraseña incorrecta", "warning");
 																		kendo.ui.progress($("#homeScreen"), false);
 																		$("#linko").show(1000);
+																		return;
 																	}
 																} catch (h) {
 																	alert("h " + h);
@@ -171,7 +171,7 @@ function confirmar(u, c, id) {
 					}
 				}
 				if (usuarioexiste == 0) {
-					alert("Usuario no existe");
+					mens("Usuario no existe", "warning");
 					kendo.ui.progress($("#homeScreen"), false);
 				}
 
@@ -222,7 +222,7 @@ function crearcuenta() {
 			try {
 				var mensaje = JSON.parse(d.responseText);
 				if (mensaje.message == "Session expired or invalid login credentials") {
-					alert("Usuario o contraseña incorrectos");
+					mens("Usuario o contraseña incorrectos", "error");
 				}
 				kendo.ui.progress($("#homeScreen"), false);
 			} catch (i) {

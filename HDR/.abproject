@@ -6,13 +6,14 @@
   "DisplayName": "Home Delivery",
   "Author": "Willberth Muñoz",
   "Description": "Home Delivery",
-  "BundleVersion": "2.0",
-  "AndroidVersionCode": "4",
+  "BundleVersion": "3.0",
+  "AndroidVersionCode": "6",
   "iOSDeviceFamily": [
-    "1",
-    "2"
+    "1"
   ],
-  "iOSBackgroundMode": [],
+  "iOSBackgroundMode": [
+    "fetch"
+  ],
   "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
   "FrameworkVersion": "4.0.0",
   "AndroidPermissions": [

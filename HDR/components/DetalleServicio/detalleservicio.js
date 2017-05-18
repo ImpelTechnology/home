@@ -39,7 +39,7 @@ function buildMap() {
 		document.getElementById('fecha').innerHTML = "Fecha: " + fecha1;
 		document.getElementById('origen').innerHTML = servicio.Dorigen;
 		document.getElementById('destino').innerHTML = servicio.Ddestino;
-		document.getElementById('responsable').innerHTML = servicio.ResponsableD;
+		//document.getElementById('responsable').innerHTML = servicio.ResponsableD;
 		document.getElementById('precio').innerHTML = "Costo envío: " + servicio.precio;
 		document.getElementById('tipoProd').innerHTML = servicio.RProductos;
 		document.getElementById('estado').innerHTML = servicio.status;
@@ -59,7 +59,7 @@ function buildMap() {
 			success: function (e) {
 				try {
 					if (e.status == "ZERO_RESULTS") {
-						alert("Es posible que la dirección de origen no exista");
+						mens(" Es posible que la dirección de origen no exista", "warning");
 						window.location = "index.html#components/Servicios/servicios.html";
 						return;
 					}
@@ -90,7 +90,7 @@ function buildMap() {
 						success: function (e) {
 							try {
 								if (e.status == "ZERO_RESULTS") {
-									alert("Es posible que la dirección de destino no exista");
+									mens(" Es posible que la dirección de destino no exista", "warning");
 									window.location = "index.html#components/Servicios/servicios.html";
 									return;
 								}

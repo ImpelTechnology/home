@@ -14,7 +14,7 @@ function guardarnuevo() {
 		var contras2 = document.getElementById('contrase2').value;
 
 		if (contras != contras2) {
-			alert("La contraseña no coincide");
+			mens(" La contraseña no coincide", "warning");
 			return;
 		}
 		var ident = document.getElementById('id').value;
@@ -43,7 +43,7 @@ function guardarnuevo() {
 		}];
 
 		if (acepta == false) {
-			alert("Deberías aceptar nuestros términos y condiciones");
+			mens(" Deberías aceptar nuestros términos y condiciones", "warning");
 		} else {
 			var inicias = "https://www.impeltechnology.com/rest/api/login?output=json&loginName=md5&password=wmunoz";
 			$.ajax({
@@ -77,18 +77,17 @@ function guardarnuevo() {
 															Acepto_Trminos_y_Condiciones: acepta,
 															Direccin_Registrada: infousuario[0].Direccion
 														};
-
 														var clienteNue = "https://www.impeltechnology.com/rest/api/create2?output=json&useIds=true&objName=Cliente1&sessionId=" + idsesion;
 
 														$.ajax({
 															url: clienteNue,
 															type: "POST",
-															data: params[0],
+															data: params,
 															dataType: "json",
 															success: function (e) {
 																try {
 																	if (e.status == "ok") {
-																		alert("Usuario creado correctamente");
+																		mens(" Usuario creado correctamente", "success");
 																		kendo.mobile.application.navigate("components/home/ingreso.html");
 																	}
 																} catch (h) {
@@ -98,7 +97,7 @@ function guardarnuevo() {
 															error: function (d) {
 																try {
 																	var mensaje = JSON.parse(d.responseText);
-																	alert(mensaje.message);
+																	mens(mensaje.message, "error");
 																} catch (i) {
 																	alert("i " + i);
 																}
@@ -149,4 +148,17 @@ function guardarnuevo() {
 	} catch (r) {
 		alert("r " + r);
 	}
+}
+
+function ValidaPassword() {
+    var pass = document.getElementById("contrase1").value;
+    var repass = document.getElementById("contrase2").value;
+    if (pass == repass) {
+        document.getElementById("btn-registro").disabled = false;
+        document.getElementById("contrase2").style.borderColor = "";
+    }
+    else {
+        document.getElementById("btn-registro").disabled = true;
+        document.getElementById("contrase2").style.borderColor = "red";
+    }
 }

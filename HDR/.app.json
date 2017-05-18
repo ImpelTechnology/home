@@ -14,7 +14,7 @@
   "name": "kendoUiMobileApp",
   "navigation": "tabstrip",
   "view": "home",
-  "transition": "slide",
+  "transition": "fade",
   "showMoreTab": false,
   "skin": "nova",
   "skinMainColor": "#ffffff",

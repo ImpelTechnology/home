@@ -60,7 +60,7 @@ app.editarperfil = kendo.observable({
 				success: function (e) {
 					try {
 						if (e.status == "ok") {
-							alert("Actualizacion correcta");
+							mens(" Actualizacion correcta", "success");
 
 							perfil.name = cliente[0].Nombre;
 							perfil.Identificacion = cliente[0].Identificacion;
@@ -102,7 +102,7 @@ function subirfoto(picture, nombre, tipo, tamano) {
 
 		var tam = (parseFloat(tamano)) / 1024;
 		if (tam > 2048) {
-			alert("Error: El archivo cargado excede 2048 KB");
+			mens(" El archivo cargado excede 2048 KB", "error");
 			return;
 		}
 
@@ -147,7 +147,8 @@ function subirfoto(picture, nombre, tipo, tamano) {
 		xhr.onload = function () {
 			try {
 				if (this.status == 200) {
-					document.getElementById('porcentaje').innerHTML = "Imagen cargada satisfactoriamente";
+					mens(" Imagen cargada satisfactoriamente", "success");
+					//document.getElementById('porcentaje').innerHTML = "Imagen cargada satisfactoriamente";
 				};
 			} catch (m) {
 				alert("m " + m);

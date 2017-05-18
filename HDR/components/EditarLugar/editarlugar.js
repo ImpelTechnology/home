@@ -48,7 +48,7 @@ app.editarlugar = kendo.observable({
 		}
 
 		if ((nombre == "") || (direccionNu == "")) {
-			alert("Por favor revise la información suministrada");
+			mens(" Por favor revise la información suministrada", "warning");
 		}
 		$.ajax({
 			url: urldir,
@@ -57,7 +57,7 @@ app.editarlugar = kendo.observable({
 			dataType: "json",
 			success: function (data) {
 				if (data.status == "ok") {
-					alert("La direccion se" + acc + "correctamente");
+					mens(" La direccion se" + acc + "correctamente", "success");
 					kendo.mobile.application.navigate("components/Perfil/perfil.html");
 				}
 			},

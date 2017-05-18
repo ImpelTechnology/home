@@ -26,7 +26,7 @@ app.Menu = kendo.observable({
                     }
                 },
                 error: function (d) {
-					alert("Error al traer los productos "+d);
+					mens(" Error al traer los productos "+ d, "error");
                 }
             });
 
@@ -95,7 +95,6 @@ function rastrearservicio() {
 function iraperfil() {
     try {
         window.location = "index.html#components/Perfil/perfil.html";
-
     } catch (p) {
         alert(p);
     }
