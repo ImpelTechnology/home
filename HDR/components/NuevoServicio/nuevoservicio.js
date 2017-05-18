@@ -16,7 +16,19 @@ app.nuevoservicio = kendo.observable({
 			comboempresa = $("#comboboxempresaNue").kendoComboBox({
 				dataSource: proveedores,
 				dataTextField: "name",
-				dataValueField: "id"
+				dataValueField: "id",
+				change: function (e) {
+					try {
+						var widget = e.sender;
+						if (widget.value() && widget.select() === -1) {
+							widget.value("");
+							widget.trigger("change");
+						}
+					} catch (e) {
+						alert(e);
+					}
+				}
+
 			}).data("kendoComboBox");
 
 			var productos = new kendo.data.DataSource({
@@ -29,7 +41,19 @@ app.nuevoservicio = kendo.observable({
 			comboproducto = $("#comboboxproductoNue").kendoComboBox({
 				dataSource: productos,
 				dataTextField: "name",
-				dataValueField: "id"
+				dataValueField: "id",
+				change: function (e) {
+					try {
+						var widget = e.sender;
+						if (widget.value() && widget.select() === -1) {
+							//custom has been selected
+							widget.value(""); //reset widget
+							widget.trigger("change");
+						}
+					} catch (e) {
+						alert(e);
+					}
+				}
 			}).data("kendoComboBox");
 
 			var lugares = new kendo.data.DataSource({
@@ -62,8 +86,8 @@ app.nuevoservicio = kendo.observable({
 						var proveedor = comboempresa.value();                               //RProveedor
 						var producto = comboproducto.value();                               //RProductos
 						var fecha = document.getElementById("fecharecogeNue").value;           //Hora_de_Recogida
-						var origen = document.getElementById("origenNue").value;               //Dorigen
-						var destino = document.getElementById("destinoNue").value;             //Ddestino
+						var origen = document.getElementById("origenNue").value +",Bogotá D.C.,Colombia";               //Dorigen
+						var destino = document.getElementById("destinoNue").value +",Bogotá D.C.,Colombia";             //Ddestino
 						//var entrega = document.getElementById("entregaNue").value;             //ResponsableO
 						//var recibe = document.getElementById("recibeNue").value;               //ResponsableD
 						var observaciones = document.getElementById("observacionesNue").value; //Observaciones

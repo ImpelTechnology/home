@@ -77,6 +77,7 @@ function guardarnuevo() {
 															Acepto_Trminos_y_Condiciones: acepta,
 															Direccin_Registrada: infousuario[0].Direccion
 														};
+														//alert(inspeccionar(params));
 														var clienteNue = "https://www.impeltechnology.com/rest/api/create2?output=json&useIds=true&objName=Cliente1&sessionId=" + idsesion;
 
 														$.ajax({

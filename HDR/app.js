@@ -9,7 +9,7 @@ var idsesion, password, loginName, imagenfoto, notificationWidget;
 	var bootstrap = function () {
 		$(function () {
 			app.mobileApp = new kendo.mobile.Application(document.body, {
-				transition: 'slide',
+				transition: 'fade',
 				skin: 'nova',
 				initial: 'components/home/ingreso.html'
 			});
