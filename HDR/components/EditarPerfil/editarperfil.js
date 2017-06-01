@@ -1,7 +1,6 @@
-'use strict';
 var perfil;
 app.editarperfil = kendo.observable({
-	onInit: function (e) { },
+	onInit: function () { },
 	afterShow: function () { },
 	onShow: function () {
 		try {
@@ -68,7 +67,7 @@ app.editarperfil = kendo.observable({
 							perfil.Telefono = cliente[0].TelFijo;
 							perfil.Celular = cliente[0].Celular;
 							perfil.Direccin_Registrada = cliente[0].Direccion;
-
+							
 							sessionStorage.setItem("perfil", JSON.stringify(perfil));
 
 							kendo.mobile.application.navigate("components/Perfil/perfil.html");
@@ -96,6 +95,9 @@ function subirfoto(picture, nombre, tipo, tamano) {
 	try {
 		document.getElementById('porcentaje').innerHTML = "Subiendo imagen";
 		var test_str = picture;
+
+		localStorage.setItem("FotoUsuario", picture);
+
 		var start_pos = test_str.indexOf('base64,') + 7;
 		var end_pos = test_str.length;
 		var text_to_send = test_str.substring(start_pos, end_pos);

@@ -1,4 +1,4 @@
-'use strict';
+
 var info;
 var arregloamostrar = [];
 app.perfil = kendo.observable({
@@ -14,6 +14,10 @@ app.perfil = kendo.observable({
 				}
 			});
 			sessionStorage.setItem("terminosA", "Perfil");
+
+			if (localStorage.getItem("FotoUsuario")) {
+				document.getElementById("foto").src = localStorage.getItem("FotoUsuario");
+			}
 		} catch (g) {
 			alert("g " + g);
 		}
@@ -22,6 +26,7 @@ app.perfil = kendo.observable({
 	onShow: function () {
 		try {
 			info = JSON.parse(sessionStorage.getItem("perfil"));
+
 			if (imagenfoto) {
 				document.getElementById("foto").src = imagenfoto;
 			}
@@ -78,6 +83,7 @@ app.perfil = kendo.observable({
 						if (resp.Foto) {
 							var foto1 = resp.Foto;
 							imagenfoto = "data:image/png;base64," + foto1.fileData;
+							localStorage.setItem("FotoUsuario", imagenfoto);
 							document.getElementById("foto").src = imagenfoto;
 						}
 					} catch (h) {
@@ -88,11 +94,12 @@ app.perfil = kendo.observable({
 					alert(inspeccionar(d));
 				}
 			});
+
 			//document.getElementById('Identificacion').innerHTML = "Identificación: " + info.Identificacion;
-			document.getElementById('email').innerHTML = "Email: " + info.email;
-			document.getElementById('direccion').innerHTML = "Dirección: " + info.Direccin_Registrada;
-			document.getElementById('telefono').innerHTML = "Teléfono: " + info.Telefono;
-			document.getElementById('celular').innerHTML = "Celular: " + info.Celular;
+			document.getElementById('email').innerHTML = '<i class="fa fa-envelope fa-2x fa-fw blue" aria-hidden="true" style="vertical-align: middle;" ></i>' + " " + info.email;
+			document.getElementById('direccion').innerHTML = '<i class="fa fa-home fa-2x fa-fw blue" aria-hidden="true" style="vertical-align: middle;"></i>' + " " + info.Direccin_Registrada;
+			document.getElementById('telefono').innerHTML = '<i class="fa fa-phone fa-2x fa-fw blue" aria-hidden="true" style="vertical-align: middle;"></i>' + " " + info.Telefono;
+			document.getElementById('celular').innerHTML = '<i class="fa fa-mobile fa-2x fa-fw blue" aria-hidden="true" style="vertical-align: middle;"></i>' + " " + info.Celular;
 			//document.getElementById('aceptaterminos').innerHTML = info.Acepto_Trminos_y_Condiciones;
 			document.getElementById('nombreusuario').innerHTML = '<i class="fa fa-user" aria-hidden="true"></i>' + " " + info.name;
 		} catch (s) {
@@ -115,6 +122,14 @@ function nuevoDir() {
 		sessionStorage.setItem("lugar", JSON.stringify(lugarDire[0]));
 		kendo.mobile.application.navigate("components/EditarLugar/editarlugar.html");
 	} catch (w) {
-		alert("w "+w);
+		alert("w " + w);
+	}
+}
+
+function editarPerfil() {
+	try {
+		kendo.mobile.application.navigate("components/EditarPerfil/editarperfil.html");
+	} catch (d) {
+		alert(d);
 	}
 }

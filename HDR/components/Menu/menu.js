@@ -1,4 +1,4 @@
-'use strict';
+
 var oculta = 1;
 app.Menu = kendo.observable({
     onInit: function () {
@@ -71,6 +71,7 @@ app.Menu = kendo.observable({
 
 function servicios() {
     try {
+		kendo.ui.progress($("#menulist"), true);
         window.location = "index.html#components/Servicios/servicios.html";
     } catch (h) {
         alert("h " + h);
@@ -79,6 +80,7 @@ function servicios() {
 
 function nuevoservicio() {
     try {
+		kendo.ui.progress($("#menulist"), true);
         window.location = "index.html#components/NuevoServicio/nuevoservicio.html";
     } catch (h) {
         alert("h " + h);

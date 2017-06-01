@@ -1,12 +1,12 @@
 <div id="perfil" data-role="view" data-title="PERFIL" data-layout="main" data-model="app.perfil" data-after-show="app.perfil.afterShow"
-    data-show="app.perfil.onShow" data-init="app.perfil.onInit" style="width: 100%; height: 100%; position: absolute;">
+    data-show="app.perfil.onShow" data-init="app.perfil.onInit" >
     <header data-role="header">
         <div data-role="navbar">
             <a data-align="left" class="fa fa-arrow-left" href="components/Menu/menu.html" aria-hidden="true" data-role="button"></a>
-            <a class="fa fa-pencil-square-o white" href="components/EditarPerfil/editarperfil.html" aria-hidden="true"
+            <a class="fa fa-pencil-square-o white" onclick="editarPerfil()" aria-hidden="true"
                 data-align="right" data-role="button"> </a> <span data-role="view-title"></span> </div>
     </header>
-    <div class="content" style="">
+    <div class="content">
         <div class="profilebg">
             <div class="container">
                 <div class="row">
@@ -23,18 +23,15 @@
         </div>
         <div style="margin-left: 15px; margin-right: 15px;">
             <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <ul class="list-unstyled perfil-data">
-                            <!--<li id="Identificacion"><strong></strong></li>-->
-                            <li id="email"><strong></strong></li>
-                            <li id="direccion"><strong></strong></li>
-                            <li id="telefono"><strong></strong></li>
-                            <li id="celular"><strong></strong></li>
-                            <!--<a href="index.html#components/TerminosCondiciones/terminoscondiciones.html"><input id="aceptaterminos" type='checkbox' />Acepta términos y condiciones</a>-->
-                        </ul>
-                    </div>
-                </div>
+				<br>
+				<br>
+				<ul class="list-group">
+					<li id="email" class="list-group-item"></li>
+					<li id="direccion" class="list-group-item"></li>
+					<li id="telefono" class="list-group-item"></li>
+					<li id="celular" class="list-group-item"></li>
+				</ul>
+
 				<h2 style="float: right;" onclick="nuevoDir()">+</h2>
                 <div class="row">
                     <h2 class="mis-lugares blue text-center">Mis Direcciones</h2> 

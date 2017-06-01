@@ -1,5 +1,3 @@
-'use strict';
-
 app.confirmaservicio = kendo.observable({
 	onInit: function (e) { },
 	afterShow: function () { },
@@ -7,7 +5,6 @@ app.confirmaservicio = kendo.observable({
 });
 function ConfirmarServC() {
 	try {
-
 		var urlconfirma = "https://www.impeltechnology.com/rest/api/update2?output=json&useIds=true&objName=Servicio&sessionId=" + idsesion + "&id=" + servcreado.id + "&status=Aceptado%20Cliente";
 
 		$.ajax({
@@ -16,6 +13,8 @@ function ConfirmarServC() {
 			success: function (e) {
 				try {
 					if (e.status == "ok") {
+						//kendo.mobile.application.navigate("#:back");
+						//kendo.mobile.application.navigate("#:back");
 						mens(" El envío se ha confirmado", "success");
 						kendo.mobile.application.navigate("components/Servicios/servicios.html");
 					}
@@ -34,7 +33,8 @@ function ConfirmarServC() {
 							success: function (e) {
 								try {
 									if (e.status == "ok") {
-
+										//	kendo.mobile.application.navigate("#:back");
+										//	kendo.mobile.application.navigate("#:back");
 										kendo.mobile.application.navigate("components/Servicios/servicios.html");
 										mens(" El envío se ha confirmado", "success");
 									}
@@ -71,7 +71,7 @@ var tramite;
 var distancia1, distancia2, servicio;
 var servcreado;
 var info;
-function buildMapconf() {
+function buildMapconf2() {
 	try {
 		sessionStorage.setItem("terminosA", "Confirma");
 		servicio = sessionStorage.getItem("InfoServicioCreado");
@@ -93,11 +93,11 @@ function buildMapconf() {
 		document.getElementById('observacionesNu').innerHTML = "Observaciones: " + servicio.Observacion;
 
 		if (tramite) {
-			//document.getElementById('tramitec').innerHTML = "Incluye Trámite";
-			document.getElementById("tramitec").checked = true;
+			document.getElementById('tramitec').innerHTML = "Incluye Trámite";
+			//document.getElementById("tramitec").checked = true;
 		} else {
-			//document.getElementById('tramitec').innerHTML = "No incluye trámite";
-			document.getElementById("tramitec").checked = "";
+			document.getElementById('tramitec').innerHTML = "No incluye trámite";
+			//document.getElementById("tramitec").checked = "";
 		}
 
 		var origen = servicio.LugarOrigen;
@@ -151,11 +151,7 @@ function buildMapconf() {
 							try {
 								if (valor.precio) {
 									//cmbiar el formato de numero a dinero
-									var valor = (valor.precio).toString();
-									var num = (valor).replace(/\./g, "");
-									num = num.toString().split("").reverse().join("").replace(/(?=\d*\.?)(\d{3})/g, '$1.');
-									num = num.split("").reverse().join("").replace(/^[\.]/, "");
-									document.getElementById('precioc').innerHTML = "$" + num;
+									document.getElementById('precioc').innerHTML = kendo.toString(parseInt(valor.precio), "c0");
 								}
 							} catch (h) {
 								alert("h " + h);
@@ -319,7 +315,7 @@ function buildMapconf() {
 		alert("Confirmacion s " + s);
 	}
 }
-function calculateAndDisplayRoute2(directionsService, directionsDisplay, lat1, long1, lat2, long2) {
+/*function calculateAndDisplayRoute2(directionsService, directionsDisplay, lat1, long1, lat2, long2) {
 	try {
 		var selectedMode = "DRIVING";
 		if (idavuelta) {
@@ -423,32 +419,55 @@ function calculardistanciaconf(lat1, long1, lat2, long2, idavuelta) {
 		alert("Confirmacion s " + s);
 	}
 }
-
+*/
 
 
 
 
 function DibujarRuta(directionsService, directionsDisplay, origen, destino) {
 	try {
-		directionsService.route({
-			origin: origen,
-			destination: destino,
-			travelMode: google.maps.TravelMode.DRIVING
-		}, function (response, status) {
-			if (status === google.maps.DirectionsStatus.OK) {
-				directionsDisplay.setDirections(response);
-			} else {
-				window.alert('Directions request failed due to ' + status);
-			}
-		});
+		if (idavuelta) {
+			var waypts = [];
+			waypts.push({
+				location: destino,
+				stopover: true
+			});
+			directionsService.route({
+				origin: origen,
+				waypoints: waypts,
+				destination: origen,
+				travelMode: google.maps.TravelMode.DRIVING
+			}, function (response, status) {
+				if (status === google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(response);
+				} else if (status == google.maps.DirectionsStatus.NOT_FOUND) {
+					kendo.mobile.application.navigate("#:back");
+					alert('La dirección no puede ser encontrada.');
+				}
+			});
+		} else {
+			directionsService.route({
+				origin: origen,
+				destination: destino,
+				travelMode: google.maps.TravelMode.DRIVING
+			}, function (response, status) {
+				if (status === google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(response);
+				} else if (status == google.maps.DirectionsStatus.NOT_FOUND) {
+					kendo.mobile.application.navigate("#:back");
+					alert('La dirección no puede ser encontrada.');
+				}
+			});
+		}
+
 	} catch (k) {
 		alert("Confirmacion k " + k);
 	}
 }
 function CalculateDistancia(origen, destino, idavuelta) {
 	try {
-		var origin1 = { lat: lat1, lng: long1 };
-		var destinationA = { lat: lat2, lng: long2 };
+		var origin1 = origen;
+		var destinationA = destino;
 		var origens = [origin1];
 		var destins = [destinationA];
 		if (idavuelta) {
@@ -501,7 +520,11 @@ function CalculateDistancia(origen, destino, idavuelta) {
 						// fechae.innerHTML = "Hora estimada de entrega: " + fecha;
 					}
 				} catch (f) {
-					alert("Confirmacion f " + f);
+					if (f == "TypeError: Cannot read property 'text' of undefined") {
+
+					} else {
+						alert("Confirmacion f " + f);
+					}
 				}
 			}
 		});

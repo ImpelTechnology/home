@@ -1,4 +1,3 @@
-'use strict';
 var direccion;
 app.editarlugar = kendo.observable({
 	onShow: function () {

@@ -1,4 +1,4 @@
-'use strict';
+
 app.mislugares = kendo.observable({
     onInit: function (e) { },
     afterShow: function () { },

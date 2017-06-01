@@ -1,4 +1,4 @@
-'use strict';
+
 var ubicacion;
 var arregloamostrar = [];
 var productos;
@@ -9,7 +9,9 @@ app.servicios = kendo.observable({
 			kendo.ui.progress($("#servicioslist"), true);
 		} catch (w) { alert(w); }
 	},
-	afterShow: function () { },
+	afterShow: function () { 
+		kendo.ui.progress($("#menulist"), false);
+	},
 	listViewClick: function (e) {
 		try {
 			var servicioe = JSON.stringify(e.dataItem);

@@ -1,4 +1,4 @@
-'use strict';
+
 app.mapaservicio = kendo.observable({
 	onInit: function (e) { },
 	afterShow: function () { }

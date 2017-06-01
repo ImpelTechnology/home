@@ -1,4 +1,4 @@
-'use strict';
+
 app.terminos = kendo.observable({
     onInit: function (e) { },
     afterShow: function () { },

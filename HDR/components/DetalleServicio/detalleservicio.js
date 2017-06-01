@@ -1,4 +1,3 @@
-'use strict';
 app.detalleservicio = kendo.observable({
 	onInit: function (e) { },
 	afterShow: function () { },
@@ -50,81 +49,100 @@ function buildMap() {
 			document.getElementById('tramite').innerHTML = "No incluye trámite";
 		}
 		var origen = servicio.Dorigen;
-		origen = origen.replace(/\s/g, "%20");
+		//***************************************
+		var mapOptions = {
+			zoom: 15,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		directionsDisplay = new google.maps.DirectionsRenderer;
+		directionsService = new google.maps.DirectionsService;
 
-		var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + origen;
+		map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+		directionsDisplay.setMap(map);
+		geocoder = new google.maps.Geocoder;
 
-		$.ajax({
-			url: url,
-			success: function (e) {
-				try {
-					if (e.status == "ZERO_RESULTS") {
-						mens(" Es posible que la dirección de origen no exista", "warning");
-						window.location = "index.html#components/Servicios/servicios.html";
-						return;
-					}
-					var resp = e;
-					lat1 = resp.results[0].geometry.location.lat;
-					long1 = resp.results[0].geometry.location.lng;
+		var destino = servicio.Ddestino;
+		DibujarRuta(directionsService, directionsDisplay, origen, destino);
+		calculardistancia(origen, destino, idavuelta);
 
-					var myLatLng = { lat: lat1, lng: long1 };
 
-					var mapOptions = {
-						center: myLatLng,
-						zoom: 15,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-					};
-					directionsDisplay = new google.maps.DirectionsRenderer;
-					directionsService = new google.maps.DirectionsService;
 
-					map = new google.maps.Map(document.getElementById("map2"), mapOptions);
-					directionsDisplay.setMap(map);
-					geocoder = new google.maps.Geocoder;
-
-					var destino = servicio.Ddestino;
-					destino = destino.replace(/\s/g, "%20");
-
-					var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + destino;
-					$.ajax({
-						url: url,
-						success: function (e) {
-							try {
-								if (e.status == "ZERO_RESULTS") {
-									mens(" Es posible que la dirección de destino no exista", "warning");
-									window.location = "index.html#components/Servicios/servicios.html";
-									return;
-								}
-								var resp = e;
-								lat2 = resp.results[0].geometry.location.lat;
-								long2 = resp.results[0].geometry.location.lng;
-
-								var destino = { lat: lat2, lng: long2 };
-
-								calculateAndDisplayRoute(directionsService, directionsDisplay, lat1, long1, lat2, long2);
-								//if (idavuelta) {
-								//   calculateAndDisplayRoute(directionsService, directionsDisplay, lat2, long2, lat1, long1);
-								// }
-								calculardistancia(lat1, long1, lat2, long2, idavuelta);
-							} catch (h) {
-								alert("h2 " + h);
+		/*
+				origen = origen.replace(/\s/g, "%20");
+		
+				var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + origen;
+		
+				$.ajax({
+					url: url,
+					success: function (e) {
+						try {
+							if (e.status == "ZERO_RESULTS") {
+								mens(" Es posible que la dirección de origen no exista", "warning");
+								window.location = "index.html#components/Servicios/servicios.html";
+								return;
 							}
-						},
-						error: function (d) { }
-					});
-
-				} catch (h) {
-					alert("h " + h);
-				}
-			},
-			error: function (d) {
-				alert(d);
-			}
-		});
-
-
+							var resp = e;
+							lat1 = resp.results[0].geometry.location.lat;
+							long1 = resp.results[0].geometry.location.lng;
+		
+							var myLatLng = { lat: lat1, lng: long1 };
+		
+							var mapOptions = {
+								center: myLatLng,
+								zoom: 15,
+								mapTypeId: google.maps.MapTypeId.ROADMAP
+							};
+							directionsDisplay = new google.maps.DirectionsRenderer;
+							directionsService = new google.maps.DirectionsService;
+		
+							map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+							directionsDisplay.setMap(map);
+							geocoder = new google.maps.Geocoder;
+		
+							var destino = servicio.Ddestino;
+							destino = destino.replace(/\s/g, "%20");
+		
+							var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + destino;
+							$.ajax({
+								url: url,
+								success: function (e) {
+									try {
+										if (e.status == "ZERO_RESULTS") {
+											mens(" Es posible que la dirección de destino no exista", "warning");
+											window.location = "index.html#components/Servicios/servicios.html";
+											return;
+										}
+										var resp = e;
+										lat2 = resp.results[0].geometry.location.lat;
+										long2 = resp.results[0].geometry.location.lng;
+		
+										var destino = { lat: lat2, lng: long2 };
+		
+										calculateAndDisplayRoute(directionsService, directionsDisplay, lat1, long1, lat2, long2);
+										//if (idavuelta) {
+										//   calculateAndDisplayRoute(directionsService, directionsDisplay, lat2, long2, lat1, long1);
+										// }
+										calculardistancia(lat1, long1, lat2, long2, idavuelta);
+									} catch (h) {
+										alert("h2 " + h);
+									}
+								},
+								error: function (d) { }
+							});
+		
+						} catch (h) {
+							alert("h " + h);
+						}
+					},
+					error: function (d) {
+						alert(d);
+					}
+				});
+		
+		*/
 
 	} catch (s) {
-		//alert("s " + s);
+		alert("s " + s);
 	}
 }
 function calculateAndDisplayRoute(directionsService, directionsDisplay, lat1, long1, lat2, long2) {
@@ -175,10 +193,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, lat1, lo
 		alert("k " + k);
 	}
 }
-function calculardistancia(lat1, long1, lat2, long2, idavuelta) {
+function calculardistancia(origen, destino, idavuelta) {
 	try {
-		var origin1 = { lat: lat1, lng: long1 };
-		var destinationA = { lat: lat2, lng: long2 };
+		var origin1 = origen;
+		var destinationA = destino;
 		var origens = [origin1];
 		var destins = [destinationA];
 		if (idavuelta) {

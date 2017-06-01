@@ -144,4 +144,9 @@ function mens(Mensaje, Tipo) {
 	});
 	notificationWidget.showText(Mensaje, Tipo);
 }
+function cambiarporvacio(valor){
+	if(valor==undefined){
+		return("");
+	}
+}
 // END_CUSTOM_CODE_kendoUiMobileApp

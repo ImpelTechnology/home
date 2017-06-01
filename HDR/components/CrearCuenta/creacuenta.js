@@ -1,5 +1,3 @@
-'use strict';
-
 app.creacuenta = kendo.observable({
 	onShow: function () {
 		sessionStorage.setItem("terminosA", "CrearUsuario");
@@ -26,7 +24,6 @@ function guardarnuevo() {
 		var email = document.getElementById('email').value;
 		var fijo = document.getElementById('tel').value;
 		var celu = document.getElementById('movil').value;
-
 
 		var acepta = document.getElementById('aceptaterminos').checked;
 
@@ -98,7 +95,7 @@ function guardarnuevo() {
 															error: function (d) {
 																try {
 																	var mensaje = JSON.parse(d.responseText);
-																	mens(mensaje.message, "error");
+																	mens("d"+mensaje.message, "error");
 																} catch (i) {
 																	alert("i " + i);
 																}

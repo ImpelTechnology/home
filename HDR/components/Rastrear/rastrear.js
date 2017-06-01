@@ -1,4 +1,4 @@
-'use strict';
+
 //var ubicacion;
 var servAct = [];
 var productos;

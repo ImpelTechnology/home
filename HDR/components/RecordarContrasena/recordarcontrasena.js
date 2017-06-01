@@ -1,4 +1,4 @@
-'use strict';
+
 
 app.recordarcontraseña = kendo.observable({
 	onShow: function () { },

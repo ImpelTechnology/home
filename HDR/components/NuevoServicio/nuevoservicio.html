@@ -8,17 +8,22 @@
     </header>
     <div class="content" style=" padding: 30px 0px;">
         <div class="container">
-            <div class="row">
-                <form id="nuevo-envio">
-                    <div class="col-md-12"> <input id="comboboxempresaNue" class="form-control" placeholder="Empresa"> </div>
+            <div >
+                <form id="nuevo-envio" class="form-inline">
+                    <div class="col-md-12"> 
+						<input id="comboboxempresaNue" class="form-control" placeholder="Empresa"> 
+					</div>
                     <div class="col-md-12">
-                    <input id="comboboxproductoNue" type="text" class="form-control" placeholder="Tipo Producto"> </div>
-                    <div class="col-md-12"> <input id="fecharecogeNue"  name="start" class="form-control" placeholder="Fecha Solicitada">                        </div>
+                    	<input id="comboboxproductoNue" type="text" class="form-control" placeholder="Tipo Producto"> 
+					</div>
+                    <div class="col-md-12"> 
+						<input id="fecharecogeNue"  name="start" class="form-control" placeholder="Fecha Solicitada">                        
+					</div>
                     <div class="col-md-12">
-                        <input id="origenNue" type="text" placeholder="Dirección de origen" style="width: 100%;">
+                        <input id="origenNue" type="text" placeholder="Dirección de origen" class="form-control" >
                     </div>
                     <div class="col-md-12">
-                        <input id="destinoNue" type="text"  placeholder="Dirección de destino" style="width: 100%;">
+                        <input id="destinoNue" type="text"  placeholder="Dirección de destino" class="form-control" >
                     </div>
                     <div class="col-md-12">
                         <input id="tramiteNue" type='checkbox'/>
@@ -26,24 +31,16 @@
                         <br>
                         <input id="idavueltaNue" type='checkbox' />
                         <strong>Ida y vuelta</strong>
-                        <br>
+                        <br><br>
                     </div>
-<!--
-                    <div class="col-md-12">
-                        <div class="form-group" style="margin-top: 10px;"> 
-                            <input id="entregaNue" type="text" class="form-control" placeholder="Persona que entrega">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group" style="margin-top: 10px;"> 
-                            <input id="recibeNue" type="text" class="form-control" placeholder="Persona que recibe">
-                        </div>
-                    </div>
--->
                     <div class="col-md-12"> 
                         <textarea id="observacionesNue" class="form-control" rows="3" placeholder="Observaciones"></textarea> 
-                        <a  id="guardar" type="submit" class="btn btn-primary btn-block btn-lg">COTIZAR ENVÍO
-                        </a> 
+
+						<input id="AceptaTerm" type='checkbox' />
+                        <strong>Acepta términos y condiciones</strong>
+                        <br><br>
+
+						<a  id="guardar" type="submit" class="btn btn-primary btn-block btn-lg">COTIZAR ENVÍO</a> 
                     </div>
                 </form>
             </div>

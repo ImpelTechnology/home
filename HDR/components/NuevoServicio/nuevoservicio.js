@@ -1,4 +1,4 @@
-'use strict';
+
 var ubicacion;
 var comboempresa, comboproducto;
 app.nuevoservicio = kendo.observable({
@@ -63,10 +63,13 @@ app.nuevoservicio = kendo.observable({
 					}
 				}
 			});
-
-			$("#fecharecogeNue").kendoDateTimePicker({
+			var startDateReference = $("#fecharecogeNue").kendoDateTimePicker({
 				format: "dd/MM/yyyy hh:mm tt"
-			});
+			}).data("kendoDateTimePicker");
+
+			startDateReference.timeView.setOptions({ min: new Date(2000, 0, 1, 5, 00, 0), max: new Date(2000, 0, 1, 19, 00, 0) });
+
+
 
 			$("#origenNue").kendoAutoComplete({
 				dataSource: lugares,
@@ -86,8 +89,8 @@ app.nuevoservicio = kendo.observable({
 						var proveedor = comboempresa.value();                               //RProveedor
 						var producto = comboproducto.value();                               //RProductos
 						var fecha = document.getElementById("fecharecogeNue").value;           //Hora_de_Recogida
-						var origen = document.getElementById("origenNue").value +",Bogotá D.C.,Colombia";               //Dorigen
-						var destino = document.getElementById("destinoNue").value +",Bogotá D.C.,Colombia";             //Ddestino
+						var origen = document.getElementById("origenNue").value + ",Bogotá D.C.,Colombia";               //Dorigen
+						var destino = document.getElementById("destinoNue").value + ",Bogotá D.C.,Colombia";             //Ddestino
 						//var entrega = document.getElementById("entregaNue").value;             //ResponsableO
 						//var recibe = document.getElementById("recibeNue").value;               //ResponsableD
 						var observaciones = document.getElementById("observacionesNue").value; //Observaciones
@@ -102,11 +105,11 @@ app.nuevoservicio = kendo.observable({
 							mens(" Por favor seleccione un tipo de producto", "warning");
 							return;
 						}
-						if (fecha == "") {
+						if (!fecha) {
 							mens(" Por favor seleccione una fecha y hora de entrega", "warning");
 							return;
 						}
-						if (origen == "") {
+						if (!origen) {
 							mens(" Por favor digite una direccion de origen", "warning");
 							return;
 						}
@@ -114,6 +117,12 @@ app.nuevoservicio = kendo.observable({
 							mens(" Por favor digite una direccion de destino", "warning");
 							return;
 						}
+
+						if (document.getElementById("AceptaTerm").checked == false) {
+							mens(" No puedes continuar sin aceptar nuestros términos", "warning");
+							return;
+						}
+						
 						/*  if (entrega == "") {
 							  alert("Por favor digite quién entrega el producto"); return;
 						  }
@@ -144,7 +153,7 @@ app.nuevoservicio = kendo.observable({
 			alert(d);
 		}
 	},
-	afterShow: function () { },
+	afterShow: function () { kendo.ui.progress($("#menulist"), false); },
 	listViewClick: function (e) { },
 	onShow: function () {
 		//kendo.ui.progress($("#contactlist"), false);
