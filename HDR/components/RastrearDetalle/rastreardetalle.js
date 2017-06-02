@@ -14,8 +14,8 @@ var idservi;
 var distancia1, distancia2;
 function buildMap2() {
 	try {
-		setInterval('getLocation()', 5000);
-		
+		setInterval('getLocation()', 2000);
+
 		var servicio = sessionStorage.getItem("servicioRastreo");
 		servicio = JSON.parse(servicio);
 
@@ -27,9 +27,30 @@ function buildMap2() {
 		fecha1 = ("00" + (fecha1.getMonth() + 1)).slice(-2) + "/" + ("00" + fecha1.getDate()).slice(-2) + "/" + fecha1.getFullYear() + " " + ("00" + fecha1.getHours()).slice(-2) + ":" + ("00" + fecha1.getMinutes()).slice(-2) + ":" + ("00" + fecha1.getSeconds()).slice(-2);
 
 		var origen = servicio.Dorigen;
-		origen = origen.replace(/\s/g, "%20");
+		var mapOptions = {
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		directionsDisplay = new google.maps.DirectionsRenderer;
+		directionsService = new google.maps.DirectionsService;
 
-		var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + origen;
+		map = new google.maps.Map(document.getElementById("mapaRas"), mapOptions);
+		icon = {
+			url: "components/Graph/mto.png", // url
+			scaledSize: new google.maps.Size(30, 28)// scaled size
+		};
+		marker = new google.maps.Marker({
+			map: map,
+			icon: icon
+		});
+		directionsDisplay.setMap(map);
+		geocoder = new google.maps.Geocoder;
+
+		var destino = servicio.Ddestino;
+		DibujarRutaRast(directionsService, directionsDisplay, origen, destino);
+
+		//origen = origen.replace(/\s/g, "%20");
+
+		/*var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + origen;
 
 		$.ajax({
 			url: url,
@@ -48,7 +69,6 @@ function buildMap2() {
 
 					var mapOptions = {
 						center: myLatLng,
-						zoom: 15,
 						mapTypeId: google.maps.MapTypeId.ROADMAP
 					};
 					directionsDisplay = new google.maps.DirectionsRenderer;
@@ -101,58 +121,12 @@ function buildMap2() {
 			error: function (d) {
 				alert(d);
 			}
-		});
+		});*/
 	} catch (s) {
 		alert("s " + s);
 	}
 }
-function calculateAndDisplayRouteras(directionsService, directionsDisplay, lat1, long1, lat2, long2) {
-	try {
-		var selectedMode = "DRIVING";
 
-		if (idavuelta) {
-			var parada = lat2 + "," + long2;
-			var waypts = [];
-			waypts.push({
-				location: parada,
-				stopover: true
-			});
-			var request = {
-				origin: { lat: lat1, lng: long1 },
-				destination: { lat: lat1, lng: long1 },
-				waypoints: waypts,
-				travelMode: google.maps.TravelMode.DRIVING
-			};
-			directionsService.route(request, function (result, status) {
-				if (status == google.maps.DirectionsStatus.OK) {
-					//autoRefresh(map, result.routes[0].overview_path);
-					directionsDisplay.setDirections(result);
-					//dibujar(map);
-				} else {
-					alert('Directions request failed due to ' + status);
-				}
-			});
-		} else {
-			var request = {
-				origin: { lat: lat1, lng: long1 },
-				destination: { lat: lat2, lng: long2 },
-				travelMode: google.maps.TravelMode.DRIVING
-			};
-			directionsService.route(request, function (result, status) {
-				if (status == google.maps.DirectionsStatus.OK) {
-					//autoRefresh(map, result.routes[0].overview_path);
-					directionsDisplay.setDirections(result);
-					//dibujar(map);
-				} else {
-					alert('Directions request failed due to ' + status);
-				}
-			});
-		}
-
-	} catch (k) {
-		alert("k " + k);
-	}
-}
 function calculardistanciaras(lat1, long1, lat2, long2, idavuelta) {
 	try {
 		var origin1 = { lat: lat1, lng: long1 };
@@ -251,7 +225,7 @@ var marker;
 function dibujarcordss(cordss) {
 	try {
 		cordss = new google.maps.LatLng(cordss.lat, cordss.lng);
-
+		map.setZoom(15);
 		if (marker == undefined) {
 			marker = new google.maps.Marker({
 				icon: icon,
@@ -345,12 +319,12 @@ function autoRefresh(map, pathCoords) {
 	}
 }
 
-function getDirections(Latitud ,Longitud) {
+function getDirections(Latitud, Longitud) {
 	var directionsService = new google.maps.DirectionsService();
-	
+
 	var prevPosn = marker.getPosition();
 	alert(inspeccionar(prevPosn));
-	var start = new google.maps.LatLng(Latitud ,Longitud);
+	var start = new google.maps.LatLng(Latitud, Longitud);
 	var end = new google.maps.LatLng(48.8583694, 2.2944796);
 
 	var request = {
@@ -385,11 +359,99 @@ function updateMarker(marker, latitude, longitude) {
 			)
 		);
 		marker.setIcon({
-			url: "components/Graph/motorbike.svg",
+			url: "components/Graph/delivery.svg",
 			scaledSize: new google.maps.Size(30, 28),
 			rotation: google.maps.geometry.spherical.computeHeading(prevPosn, marker.getPosition())
 		})
 	} catch (s) {
 		alert(s);
+	}
+}
+function DibujarRutaRast(directionsService, directionsDisplay, origen, destino) {
+	try {
+		if (idavuelta) {
+			var waypts = [];
+			waypts.push({
+				location: destino,
+				stopover: true
+			});
+			directionsService.route({
+				origin: origen,
+				waypoints: waypts,
+				destination: origen,
+				travelMode: google.maps.TravelMode.DRIVING
+			}, function (response, status) {
+				if (status === google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(response);
+				} else if (status == google.maps.DirectionsStatus.NOT_FOUND) {
+					kendo.mobile.application.navigate("#:back");
+					alert('La dirección no puede ser encontrada.');
+				}
+			});
+		} else {
+			directionsService.route({
+				origin: origen,
+				destination: destino,
+				travelMode: google.maps.TravelMode.DRIVING
+			}, function (response, status) {
+				if (status === google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(response);
+				} else if (status == google.maps.DirectionsStatus.NOT_FOUND) {
+					kendo.mobile.application.navigate("#:back");
+					alert('La dirección no puede ser encontrada.');
+				}
+			});
+		}
+
+	} catch (k) {
+		alert("Confirmacion k " + k);
+	}
+}
+
+function calculateAndDisplayRouteras(directionsService, directionsDisplay, lat1, long1, lat2, long2) {
+	try {
+		var selectedMode = "DRIVING";
+
+		if (idavuelta) {
+			var parada = lat2 + "," + long2;
+			var waypts = [];
+			waypts.push({
+				location: parada,
+				stopover: true
+			});
+			var request = {
+				origin: { lat: lat1, lng: long1 },
+				destination: { lat: lat1, lng: long1 },
+				waypoints: waypts,
+				travelMode: google.maps.TravelMode.DRIVING
+			};
+			directionsService.route(request, function (result, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					//autoRefresh(map, result.routes[0].overview_path);
+					directionsDisplay.setDirections(result);
+					//dibujar(map);
+				} else {
+					alert('Directions request failed due to ' + status);
+				}
+			});
+		} else {
+			var request = {
+				origin: { lat: lat1, lng: long1 },
+				destination: { lat: lat2, lng: long2 },
+				travelMode: google.maps.TravelMode.DRIVING
+			};
+			directionsService.route(request, function (result, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					//autoRefresh(map, result.routes[0].overview_path);
+					directionsDisplay.setDirections(result);
+					//dibujar(map);
+				} else {
+					alert('Directions request failed due to ' + status);
+				}
+			});
+		}
+
+	} catch (k) {
+		alert("k " + k);
 	}
 }

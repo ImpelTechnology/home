@@ -1,25 +1,27 @@
 var direccion;
 app.editarlugar = kendo.observable({
-	onShow: function () {
+	onShow: function (e) {
 		try {
 			direccion = JSON.parse(sessionStorage.getItem("lugar"));
 			if (direccion.Nombre == "Agregar Nueva Dirección") {
 				document.getElementById("nombrelugar").value = "";
 				document.getElementById("direccioneditarlugar").value = "";
+				e.view.options.title = "AGREGAR DIRECCIÓN";
 			} else {
 				document.getElementById("nombrelugar").value = direccion.Nombre;
 				document.getElementById("direccioneditarlugar").value = direccion.streetAddr1;
+				e.view.options.title = "EDITAR DIRECCIÓN";
 			}
 		} catch (e) {
 			alert("e " + e);
 		}
 	},
-	afterShow: function () {},
+	afterShow: function () { },
 	guardarLugar: function () {
 		var nombre = document.getElementById("nombrelugar").value;
 		var direccionNu = document.getElementById("direccioneditarlugar").value;
 		var info = JSON.parse(sessionStorage.getItem("perfil"));
-		
+
 		if (direccion.Nombre == "Agregar Nueva Dirección") {
 			var acc = " creó ";
 			var NuevaDir = [{

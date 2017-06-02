@@ -6,6 +6,13 @@ app.editarperfil = kendo.observable({
 		try {
 			perfil = JSON.parse(sessionStorage.getItem("perfil"));
 
+			if(!perfil.Celular){
+				perfil.Celular="";
+			}
+			if(!perfil.Direccin_Registrada){
+				perfil.Direccin_Registrada="";
+			}
+
 			document.getElementById('nombreed').value = perfil.name;
 			document.getElementById('identied').value = perfil.Identificacion;
 			document.getElementById('emailed').value = perfil.email;

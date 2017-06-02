@@ -24,8 +24,17 @@ app.nuevoservicio = kendo.observable({
 							widget.value("");
 							widget.trigger("change");
 						}
+
 					} catch (e) {
 						alert(e);
+					}
+				},
+				close: function (e) {
+					var widget = e.sender;
+					if (widget.text() == "DILIEXPRESS") {
+						document.getElementById("observacionesNue").placeholder = "¿Qué tramite hacer? \n¿Qué tenemos en cuenta?";
+					}else{
+						document.getElementById("observacionesNue").placeholder = "Observaciones";
 					}
 				}
 
@@ -69,19 +78,17 @@ app.nuevoservicio = kendo.observable({
 
 			startDateReference.timeView.setOptions({ min: new Date(2000, 0, 1, 5, 00, 0), max: new Date(2000, 0, 1, 19, 00, 0) });
 
-
-
 			$("#origenNue").kendoAutoComplete({
 				dataSource: lugares,
 				dataTextField: "dirmovil",
 				dataValueField: "id",
-				noDataTemplate: 'No hay coincidencias con tus lugares'
+				noDataTemplate: ''
 			});
 			$("#destinoNue").kendoAutoComplete({
 				dataSource: lugares,
 				dataTextField: "dirmovil",
 				dataValueField: "id",
-				noDataTemplate: 'No hay coincidencias con tus lugares'
+				noDataTemplate: ''
 			});
 			$("#guardar").kendoButton({
 				click: function (e) {
@@ -122,7 +129,7 @@ app.nuevoservicio = kendo.observable({
 							mens(" No puedes continuar sin aceptar nuestros términos", "warning");
 							return;
 						}
-						
+
 						/*  if (entrega == "") {
 							  alert("Por favor digite quién entrega el producto"); return;
 						  }

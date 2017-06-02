@@ -13,18 +13,29 @@
                         <ul data-role="listview" data-click="app.rastrear.listViewClick" data-bind="source: rastre" data-fixed-headers="true" data-template="my-templateras" data-pull-to-refresh="true" data-append-on-refresh="false">
                         </ul>
                         <script type="text/x-kendo-template" id="my-templateras">
-                            <div class="col-xs-4 text-center">
-                                <i class="fa fa-envelope fa-4x" aria-hidden="true"></i>
-                                <small style="clear: both; display:block;">#: RProductos #</small>
-								<small style="clear: both; display:block;">#: status #</small>
+                            <div class="col-xs-4 text-center blue">
+                                # if (RProductos === 'Documentos') { #
+								<i class="fa fa-envelope fa-3x"></i>
+								# } else if (RProductos === 'Paquete'){ #
+								<i class="fa fa-archive fa-3x"></i>
+								# } else if (RProductos === 'Consignación'){ #
+								<i class="fa fa-university fa-3x"></i>
+								# } #
+
+                                <small style="clear: both; display:block;" class="black">#: RProductos #</small>
+								<small style="clear: both; display:block;" class="black">#: status #</small>
                             </div>
                             <div>
                                 <ul class="list-unstyled">
-                                    <li><strong>Origen:</strong>#: Dorigen #</li>
-                                    <li><strong>Destino:</strong>#: Ddestino #</li>
-                                    <li><strong>Precio:</strong>#: precio #</li>
+                                    <li><strong class="black">Origen: </strong>#: Dorigen #</li>
+                                    <li><strong class="black">Destino: </strong>#: Ddestino #</li>
+									# precio= kendo.toString(parseInt(precio), "c0");#
+                                    <li><strong class="black">Precio: </strong>#:   precio #</li>
                                 </ul>
                             </div>
+
+
+							
                         </script>
                     </div>
                 </li>

@@ -94,7 +94,12 @@ app.perfil = kendo.observable({
 					alert(inspeccionar(d));
 				}
 			});
-
+			if(!info.Celular){
+				info.Celular="";
+			}
+			if(!info.Direccin_Registrada){
+				info.Direccin_Registrada="";
+			}
 			//document.getElementById('Identificacion').innerHTML = "Identificación: " + info.Identificacion;
 			document.getElementById('email').innerHTML = '<i class="fa fa-envelope fa-2x fa-fw blue" aria-hidden="true" style="vertical-align: middle;" ></i>' + " " + info.email;
 			document.getElementById('direccion').innerHTML = '<i class="fa fa-home fa-2x fa-fw blue" aria-hidden="true" style="vertical-align: middle;"></i>' + " " + info.Direccin_Registrada;

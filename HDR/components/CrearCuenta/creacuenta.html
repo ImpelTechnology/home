@@ -1,51 +1,71 @@
 <div data-role="view" data-title="REGÍSTRATE" data-layout="main" data-model="app.creacuenta" data-show="app.creacuenta.onShow"
-    data-after-show="app.creacuenta.afterShow" id="creacuenta" class="screen">
-    <header data-role="header">
-        <div data-role="navbar">
-            <a data-align="left" class="fa fa-reply" href="components/home/ingreso.html" aria-hidden="true" data-role="button"></a> <span data-role="view-title"></span> </div>
-    </header>
-    <div class="content" style=" padding: 30px 30px;">
-        <div class="container">
-            <form class="form-horizontal" id="registro">
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="text" class="form-control" id="user" placeholder="Usuario" required="true"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="password" class="form-control" id="contrase1" placeholder="Contraseña" required="true"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="password" class="form-control" id="contrase2" placeholder="Verifica Contraseña" required="true" onkeyup="ValidaPassword();"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="number" class="form-control" id="id" placeholder="Identificación"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="string" class="form-control" id="nombres" placeholder="Nombres"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="string" class="form-control" id="apellidos" placeholder="Apellidos"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="string" class="form-control" id="direccion" placeholder="Dirección"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="email" class="form-control" id="email" placeholder="Email"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="tel" class="form-control" id="tel" placeholder="Teléfono"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12"> <input type="tel" class="form-control" id="movil" placeholder="Celular"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <a href="index.html#components/TerminosCondiciones/terminoscondiciones.html"><input id="aceptaterminos" type='checkbox' />Acepta términos y condiciones</a>
-                    </div>
-                </div>
-            </form>
-            <div class="form-group">
-                <div class="col-sm-12"> <button id="btn-registro" onclick="guardarnuevo()" type="submit" class="btn btn-primary btn-block btn-lg">REGISTRARME</button>                    </div>
-            </div>
-        </div>
-    </div>
+	data-after-show="app.creacuenta.afterShow" id="creacuenta" class="screen">
+	<header data-role="header">
+		<div data-role="navbar">
+			<a data-align="left" class="fa fa-reply" onclick="volverIng()" aria-hidden="true" data-role="button"></a> <span data-role="view-title"></span> </div>
+	</header>
+	<div class="content" style=" padding:30px 4px;">
+		<div class="container">
+			<form class="form-horizontal" id="registro">
+				<div id="DIVemail" class="input-group margin-bottom-sm" style="padding-bottom: 5px;display:none;"> <span class="input-group-addon">
+						<i class="fa fa-envelope fa-fw fa-2x blue" aria-hidden="true"></i>
+					</span> <input class="form-control" type="email" id="email" placeholder="Email"> </div>
+				<div id="DIVPass" class="input-group margin-bottom-sm"
+					style="padding-bottom: 5px;display:none;"> <span class="input-group-addon">
+						<i class="fa fa-key fa-fw fa-2x blue" aria-hidden="true"></i>
+					</span> <input class="form-control" type="password" id="contrase1" placeholder="Contraseña"> <input class="form-control"
+						type="password" id="contrase2" placeholder="Verificar Contraseña" onkeyup="ValidaPassword();"> </div>
+				<div id="DIVNombre"
+					class="input-group margin-bottom-sm" style="padding-bottom: 5px;display:none;"> <span class="input-group-addon">
+						<i class="fa fa-user-circle-o fa-fw fa-2x blue" aria-hidden="true"></i>
+					</span> <input class="form-control" type="string" id="nombres" placeholder="Nombres y Apellidos"> </div>
+				<div id="DIVTel"
+					class="input-group margin-bottom-sm" style="padding-bottom: 5px;display:none;"> <span class="input-group-addon">
+						<i class="fa fa-mobile fa-fw fa-2x blue" aria-hidden="true"></i>
+					</span> <input class="form-control" type="tel" id="tel" placeholder="Teléfono/Celular"> </div>
+				<center>
+					<div id="termi" class="form-group" style="display:none;padding:30px">
+						<div class="col-xs-12"> <input id="aceptarterminos" data-role="switch" data-checked="false" /> <a href="index.html#components/TerminosCondiciones/terminoscondiciones.html">Aceptar términos y  condiciones</a>							
+						</div>
+					
+					
+					</div>
+				</center>
+			</form>
+			<div id="botob" class="form-group" style="display:none;">
+				<div class="col-sm-12"> <button id="btn-registro" onclick="guardarnuevo()" type="submit" class="btn btn-primary btn-block btn-lg">REGISTRARME</button>					</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--MODAL -->
+<div data-role="modalview" id="TipoPersona" style="height:100px;width:250px">
+	<center>
+		<p>
+			<h>¿Cómo deseas registrarte?</h>
+		</p>
+	</center>
+	<div class="button-group"> <a class="blue" data-role="button" onclick="Natural()">PERSONA NATURAL</a> <a class="blue" data-role="button" onclick="Juridica()">EMPRESA</a>			</div>
+</div>
+<div data-role="modalview" id="persJurid" style="height:250px;width:250px;">
+	<p class="text-center pmodal">
+		<!--.PERSONA JURÍDICA.-->
+		<div id="DIVRazonS" class="input-group margin-bottom-sm" style="padding-bottom: 5px;"> <span class="input-group-addon">
+						<i class="fa fa-user-circle-o fa-fw fa-2x blue" aria-hidden="true"></i>
+					</span> <input class="form-control" type="text" id="RazonS" placeholder="Razón Social"> </div>
+		<div id="DIVNit" class="input-group margin-bottom-sm"
+			style="padding-bottom: 5px;"> <span class="input-group-addon">
+						<i class="fa fa-id-card-o fa-fw fa-2x blue" aria-hidden="true"></i>
+					</span> <input class="form-control" type="number" id="NIT" placeholder="NIT"> </div>
+		<div id="DIVDirec" class="input-group margin-bottom-sm"
+			style="padding-bottom: 5px;"> <span class="input-group-addon">
+						<i class="fa fa-map-marker fa-fw fa-2x blue" aria-hidden="true"></i>
+					</span> <input class="form-control" type="text" id="Direcc" placeholder="Dirección"> </div>
+		<!--.PERSONA JURÍDICA.-->
+		
+			<div class="button-group"> 
+				<a class="blue" data-role="button" onclick="Siguiente()">CONTINUAR</a>
+			</div>
+		
+	</p>
 </div>

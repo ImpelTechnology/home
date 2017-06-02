@@ -13,8 +13,6 @@ function ConfirmarServC() {
 			success: function (e) {
 				try {
 					if (e.status == "ok") {
-						//kendo.mobile.application.navigate("#:back");
-						//kendo.mobile.application.navigate("#:back");
 						mens(" El envío se ha confirmado", "success");
 						kendo.mobile.application.navigate("components/Servicios/servicios.html");
 					}
@@ -26,14 +24,13 @@ function ConfirmarServC() {
 				try {
 					var mensaje = JSON.parse(d.responseText);
 					if (mensaje.message == "El campo \"Cliente\" debe tener un valor") {
-						var urlconfirma = "https://www.impeltechnology.com/rest/api/update2?output=json&useIds=true&objName=Servicio&sessionId=" + idsesion + "&id=" + servcreado.id + "&status=Aceptado%20Cliente" + "&RCliente=" + info.id;
+						var urlconfirma = "https://www.impeltechnology.com/rest/api/update2?output=json&useIds=true&objName=Servicio&sessionId=" + idsesion + "&id=" + servcreado.id + "&status=Conductor%20Asignado" + "&RCliente=" + info.id;
 						$.ajax({
 							url: urlconfirma,
 							async: false,
 							success: function (e) {
 								try {
 									if (e.status == "ok") {
-										//	kendo.mobile.application.navigate("#:back");
 										//	kendo.mobile.application.navigate("#:back");
 										kendo.mobile.application.navigate("components/Servicios/servicios.html");
 										mens(" El envío se ha confirmado", "success");
@@ -85,8 +82,8 @@ function buildMapconf2() {
 		fecha1 = ("00" + (fecha1.getMonth() + 1)).slice(-2) + "/" + ("00" + fecha1.getDate()).slice(-2) + "/" + fecha1.getFullYear() + " " + ("00" + fecha1.getHours()).slice(-2) + ":" + ("00" + fecha1.getMinutes()).slice(-2) + ":" + ("00" + fecha1.getSeconds()).slice(-2);
 
 		//document.getElementById('fechac').innerHTML = "Hora de recogida: " + servicio.Fecharecoge;
-		document.getElementById('origenc').innerHTML = "Origen: " + servicio.LugarOrigen;
-		document.getElementById('destinoc').innerHTML = "Destino: " + servicio.LugarDestino;
+		document.getElementById('origenc').innerHTML = 'Origen:  <div class="black">' + servicio.LugarOrigen + '</div>';
+		document.getElementById('destinoc').innerHTML = 'Destino:  <div class="black">' + servicio.LugarDestino + '</div>';
 		//document.getElementById('responsablec').innerHTML = servicio.Recibe;
 		//document.getElementById('precioc').innerHTML = "";
 

@@ -10,7 +10,14 @@ app.home = kendo.observable({
 			alert(k);
 		}
 	},
-	afterShow: function () { }
+	afterShow: function () { },
+	before: function () {
+		if (localStorage.getItem("HoDe.usuario")) {
+			document.getElementById("usuario").value=localStorage.getItem("HoDe.usuario");
+			document.getElementById("contrase").value=localStorage.getItem("HoDe.contraseña");
+			ingresar();
+		}
+	}
 });
 var usuario, pass, usuarioReal, passReal;
 // START_CUSTOM_CODE_home
@@ -69,7 +76,7 @@ function ingresar() {
 					}
 					kendo.ui.progress($("#homeScreen"), false);
 				} catch (i) {
-					alert("i " + i);
+					alert("i1 " + i);
 				}
 			}
 		});
@@ -115,6 +122,10 @@ function confirmar(u, c, id) {
 																		contraseok = 1;
 																		kendo.ui.progress($("#homeScreen"), false);
 																		kendo.mobile.application.navigate("components/Menu/menu.html");
+
+																		localStorage.setItem("HoDe.usuario", u);
+																		localStorage.setItem("HoDe.contraseña", c);
+
 																		//window.location = "index.html#components/Menu/menu.html";
 																	} else {
 																		mens(" Contraseña incorrecta", "warning");
@@ -131,7 +142,7 @@ function confirmar(u, c, id) {
 																	var mensaje = JSON.parse(d.responseText);
 																	alert(mensaje.message);
 																} catch (i) {
-																	alert("i " + i);
+																	alert("i2 " + i);
 																}
 															}
 														});
@@ -145,7 +156,7 @@ function confirmar(u, c, id) {
 													var mensaje = JSON.parse(d.responseText);
 													alert(mensaje.message);
 												} catch (i) {
-													alert("i " + i);
+													alert("i3 " + i);
 												}
 											}
 										});
@@ -159,7 +170,7 @@ function confirmar(u, c, id) {
 									var mensaje = JSON.parse(d.responseText);
 									alert(mensaje.message);
 								} catch (i) {
-									alert("i " + i);
+									alert("i4 " + i);
 								}
 							}
 						});
@@ -183,7 +194,7 @@ function confirmar(u, c, id) {
 				var mensaje = JSON.parse(d.responseText);
 				kendo.ui.progress($("#homeScreen"), false);
 			} catch (i) {
-				alert("i " + i);
+				alert("i5 " + i);
 			}
 		}
 	});
@@ -224,7 +235,7 @@ function crearcuenta() {
 				}
 				kendo.ui.progress($("#homeScreen"), false);
 			} catch (i) {
-				alert("i " + i);
+				alert("i6 " + i);
 			}
 		}
 	});

@@ -1,4 +1,3 @@
-
 var ubicacion;
 var arregloamostrar = [];
 var productos;
