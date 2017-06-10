@@ -1,7 +1,5 @@
 {
   "CorePlugins": [
-    "com.firebase.sdk@3.0.4.2",
-    "com.phonegap.plugins.PushPlugin@3.3.0",
     "com.telerik.LivePatch",
     "cordova-plugin-battery-status",
     "cordova-plugin-camera",
@@ -22,6 +20,8 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "cordova-plugin-vibration",
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    "com.firebase.sdk@3.0.4.2",
+    "com.phonegap.plugins.PushPlugin@3.3.0"
   ]
 }
