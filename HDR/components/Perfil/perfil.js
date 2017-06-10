@@ -1,6 +1,5 @@
-
-var info;
 var arregloamostrar = [];
+var info = [];
 app.perfil = kendo.observable({
 	onInit: function (e) {
 		try {
@@ -9,7 +8,7 @@ app.perfil = kendo.observable({
 					try {
 						window.location = "index.html#components/MisLugares/mislugares.html";
 					} catch (s) {
-						alert("s " + s);
+						alert("sA " + s);
 					}
 				}
 			});
@@ -25,57 +24,52 @@ app.perfil = kendo.observable({
 	afterShow: function () { },
 	onShow: function () {
 		try {
-			info = JSON.parse(sessionStorage.getItem("perfil"));
 
 			if (imagenfoto) {
 				document.getElementById("foto").src = imagenfoto;
 			}
 			arregloamostrar = [];
 
-			var urldir = "https://www.impeltechnology.com/rest/api/getPage?output=json&startRow=0&rowsPerPage=100&viewId=UU3tnnF2TP-6iYqKdejtbQ&objName=Direccion&sessionId=" + idsesion;
+			//*******************************************************************
+			var datos = {
+				query: "select id,Nombre,streetAddr1 from Direccion where RCliente=" + portalUserId,
+				sessionId: idsesion,
+				startRow: 0,
+				maxRows: 100,
+				output: "json"
+			};
+
+			var direcciones = [];
 			$.ajax({
-				url: urldir,
-				success: function (resp) {
+				url: "https://www.impeltechnology.com/rest/api/selectQuery",
+				type: "GET",
+				dataType: "json",
+				data: datos,
+				async: false,
+				success: function (data) {
 					try {
-						var ds = new kendo.data.DataSource({
-							data: resp,
-							schema: {
-								parse: function (response) {
-									try {
-										$.each(response, function (index, item) {
-											if (!(item.name) || (item.name == null) || (item.name == undefined) || (item.name == "")) {
-												item.name = "";
-											}
-											if (!(item.streetAddr1) || (item.streetAddr1 == null) || (item.streetAddr1 == undefined) || (item.streetAddr1 == "")) {
-												item.streetAddr1 = "";
-											}
-											if (!(item.Nombre) || (item.Nombre == null) || (item.Nombre == undefined) || (item.Nombre == "")) {
-												item.Nombre = "";
-											}
-										});
-										for (var i = 0; i < response.length; i++) {
-											if (response[i].RCliente == info.id) {
-												arregloamostrar.push(response[i]);
-											}
-										}
-									} catch (i) {
-										alert("i " + i);
-									}
-									return arregloamostrar;
-								}
-							}
+						$.each(data, function (index, item) {
+							arregloamostrar.push({
+								id: item[0],
+								Nombre: item[1],
+								streetAddr1: item[2]
+							});
 						});
-						app.perfil.set("lugares", ds);
-					} catch (h) {
-						alert("h " + h);
+					} catch (e) {
+						alert("DDD" + e);
 					}
 				},
-				error: function (d) {
-					alert(inspeccionar(d));
+				error: function (err) {
+					alert("asddas:    " + JSON.stringify(err));
 				}
 			});
 
-			var urlfoto = "https://www.impeltechnology.com/rest/api/getBinaryData?objName=Cliente1&id=" + info.id + "&fieldName=Foto&output=JSON&sessionId=" + idsesion;
+			var lugares = new kendo.data.DataSource({
+				data: arregloamostrar
+			});
+			app.perfil.set("lugares", lugares);
+
+			var urlfoto = "https://www.impeltechnology.com/rest/api/getBinaryData?objName=Cliente1&id=" + portalUserId + "&fieldName=Foto&output=JSON&sessionId=" + idsesion;
 			$.ajax({
 				url: urlfoto,
 				success: function (resp) {
@@ -94,12 +88,60 @@ app.perfil = kendo.observable({
 					alert(inspeccionar(d));
 				}
 			});
-			if(!info.Celular){
-				info.Celular="";
-			}
-			if(!info.Direccin_Registrada){
-				info.Direccin_Registrada="";
-			}
+
+			var datos = {
+				query: "select email,Direccin_Registrada,Telefono,Celular,Nombre from Cliente1 where id=" + portalUserId,
+				sessionId: idsesion,
+				startRow: 0,
+				maxRows: 1,
+				output: "json"
+			};
+
+			$.ajax({
+				url: "https://www.impeltechnology.com/rest/api/selectQuery",
+				type: "GET",
+				dataType: "json",
+				data: datos,
+				async: false,
+				success: function (data) {
+					try {
+						sessionStorage.setItem("Usuario", data);
+						$.each(data, function (index, item) {
+							if (item[0] != null) {
+								info.email = item[0];
+							} else {
+								info.email = "";
+							}
+							if (item[1] != null) {
+								info.Direccin_Registrada = item[1];
+							} else {
+								info.Direccin_Registrada = "";
+							}
+							if (item[2] != null) {
+								info.Telefono = item[2];
+							} else {
+								info.Telefono = "";
+							}
+							if (item[3] != null) {
+								info.Celular = item[3];
+							} else {
+								info.Celular = "";
+							}
+							if (item[4] != null) {
+								info.name = item[4];
+							} else {
+								info.name = "";
+							}
+						});
+					} catch (e) {
+						alert("asd" + e);
+					}
+				},
+				error: function (err) {
+					alert("asd:    a" + JSON.stringify(err));
+				}
+			});
+
 			//document.getElementById('Identificacion').innerHTML = "Identificación: " + info.Identificacion;
 			document.getElementById('email').innerHTML = '<i class="fa fa-envelope fa-2x fa-fw blue" aria-hidden="true" style="vertical-align: middle;" ></i>' + " " + info.email;
 			document.getElementById('direccion').innerHTML = '<i class="fa fa-home fa-2x fa-fw blue" aria-hidden="true" style="vertical-align: middle;"></i>' + " " + info.Direccin_Registrada;
@@ -108,7 +150,7 @@ app.perfil = kendo.observable({
 			//document.getElementById('aceptaterminos').innerHTML = info.Acepto_Trminos_y_Condiciones;
 			document.getElementById('nombreusuario').innerHTML = '<i class="fa fa-user" aria-hidden="true"></i>' + " " + info.name;
 		} catch (s) {
-			alert("s " + s);
+			alert("sssssss " + s);
 		}
 	}, listViewClick: function (e) {
 		try {
@@ -123,7 +165,7 @@ app.perfil = kendo.observable({
 
 function nuevoDir() {
 	try {
-		var lugarDire = [{ Nombre: "Agregar Nueva Dirección" }];
+		var lugarDire = [{ "Nombre": "Agregar Nueva Dirección" }];
 		sessionStorage.setItem("lugar", JSON.stringify(lugarDire[0]));
 		kendo.mobile.application.navigate("components/EditarLugar/editarlugar.html");
 	} catch (w) {

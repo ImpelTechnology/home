@@ -1,4 +1,3 @@
-'use strict';
 var idsesion, password, loginName, imagenfoto, notificationWidget;
 
 (function () {

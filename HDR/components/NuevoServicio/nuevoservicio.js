@@ -1,4 +1,3 @@
-
 var ubicacion;
 var comboempresa, comboproducto;
 app.nuevoservicio = kendo.observable({
@@ -13,6 +12,7 @@ app.nuevoservicio = kendo.observable({
 					}
 				}
 			});
+
 			comboempresa = $("#comboboxempresaNue").kendoComboBox({
 				dataSource: proveedores,
 				dataTextField: "name",
@@ -26,14 +26,14 @@ app.nuevoservicio = kendo.observable({
 						}
 
 					} catch (e) {
-						alert(e);
+						alert("AAA"+e);
 					}
 				},
 				close: function (e) {
 					var widget = e.sender;
 					if (widget.text() == "DILIEXPRESS") {
 						document.getElementById("observacionesNue").placeholder = "¿Qué tramite hacer? \n¿Qué tenemos en cuenta?";
-					}else{
+					} else {
 						document.getElementById("observacionesNue").placeholder = "Observaciones";
 					}
 				}
@@ -60,18 +60,48 @@ app.nuevoservicio = kendo.observable({
 							widget.trigger("change");
 						}
 					} catch (e) {
-						alert(e);
+						alert("BBB"+e);
 					}
 				}
 			}).data("kendoComboBox");
 
-			var lugares = new kendo.data.DataSource({
-				transport: {
-					read: {
-						url: "https://www.impeltechnology.com/rest/api/getPage?output=json&startRow=0&rowsPerPage=1000&viewId=UU3tnnF2TP-6iYqKdejtbQ&objName=Direccion&sessionId=" + idsesion
+
+			//***********************************************
+			var datos = {
+				query: "select id,streetAddr1 from Direccion where RCliente=" + portalUserId,
+				sessionId: idsesion,
+				startRow: 0,
+				maxRows: 100,
+				output: "json"
+			};
+
+			var direcciones = [];
+			$.ajax({
+				url: "https://www.impeltechnology.com/rest/api/selectQuery",
+				type: "GET",
+				dataType: "json",
+				data: datos,
+				async: false,
+				success: function (data) {
+					try {
+						$.each(data, function (index, item) {
+							direcciones.push({
+								id:item[0],
+								name:item[1]
+							});
+						});
+					} catch (e) {
+						alert("asd" + e);
 					}
+				},
+				error: function (err) {
+					alert("asd:    a" + JSON.stringify(err));
 				}
 			});
+			var lugares = new kendo.data.DataSource({
+				data: direcciones
+			});
+			//***********************************************
 			var startDateReference = $("#fecharecogeNue").kendoDateTimePicker({
 				format: "dd/MM/yyyy hh:mm tt"
 			}).data("kendoDateTimePicker");
@@ -80,13 +110,13 @@ app.nuevoservicio = kendo.observable({
 
 			$("#origenNue").kendoAutoComplete({
 				dataSource: lugares,
-				dataTextField: "dirmovil",
+				dataTextField: "name",
 				dataValueField: "id",
 				noDataTemplate: ''
 			});
 			$("#destinoNue").kendoAutoComplete({
 				dataSource: lugares,
-				dataTextField: "dirmovil",
+				dataTextField: "name",
 				dataValueField: "id",
 				noDataTemplate: ''
 			});
@@ -101,8 +131,8 @@ app.nuevoservicio = kendo.observable({
 						//var entrega = document.getElementById("entregaNue").value;             //ResponsableO
 						//var recibe = document.getElementById("recibeNue").value;               //ResponsableD
 						var observaciones = document.getElementById("observacionesNue").value; //Observaciones
-						var tramite = document.getElementById("tramiteNue").checked;           //Incluye_Trmite
-						var idavuelta = document.getElementById("idavueltaNue").checked;         //Ida_y_Vuelta
+						var tramite = $("#tramiteNue").data("kendoMobileSwitch").check();           //Incluye_Trmite
+						var idavuelta = $("#idavueltaNue").data("kendoMobileSwitch").check();         //Ida_y_Vuelta
 
 						if (proveedor == "") {
 							mens(" Por favor seleccione un proveedor", "warning");
@@ -116,17 +146,12 @@ app.nuevoservicio = kendo.observable({
 							mens(" Por favor seleccione una fecha y hora de entrega", "warning");
 							return;
 						}
-						if (!origen) {
+						if (origen == ",Bogotá D.C.,Colombia") {
 							mens(" Por favor digite una direccion de origen", "warning");
 							return;
 						}
-						if (destino == "") {
+						if (destino == ",Bogotá D.C.,Colombia") {
 							mens(" Por favor digite una direccion de destino", "warning");
-							return;
-						}
-
-						if (document.getElementById("AceptaTerm").checked == false) {
-							mens(" No puedes continuar sin aceptar nuestros términos", "warning");
 							return;
 						}
 
@@ -157,7 +182,7 @@ app.nuevoservicio = kendo.observable({
 				}
 			});
 		} catch (d) {
-			alert(d);
+			alert("asdasd"+d);
 		}
 	},
 	afterShow: function () { kendo.ui.progress($("#menulist"), false); },

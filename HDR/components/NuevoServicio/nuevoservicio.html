@@ -11,35 +11,31 @@
             <div >
                 <form id="nuevo-envio" class="form-inline">
                     <div class="col-md-12"> 
-						<input id="comboboxempresaNue" class="form-control" placeholder="Empresa"> 
+						<input id="comboboxempresaNue" style="width: 100%;margin-top: 6px;" placeholder="Empresa"> 
 					</div>
                     <div class="col-md-12">
-                    	<input id="comboboxproductoNue" type="text" class="form-control" placeholder="Tipo Producto"> 
+                    	<input id="comboboxproductoNue" type="text" style="width: 100%;margin-top: 6px;" placeholder="Tipo Producto"> 
 					</div>
                     <div class="col-md-12"> 
-						<input id="fecharecogeNue"  name="start" class="form-control" placeholder="Fecha Solicitada">                        
+						<input id="fecharecogeNue"  name="start" style="width: 100%;margin-top: 6px;" placeholder="Fecha Solicitada">                        
 					</div>
                     <div class="col-md-12">
-                        <input id="origenNue" type="text" placeholder="Dirección de origen" class="form-control" >
+                        <input id="origenNue" type="text" placeholder="Dirección de origen" style="width: 100%;margin-top: 6px;" >
                     </div>
                     <div class="col-md-12">
-                        <input id="destinoNue" type="text"  placeholder="Dirección de destino" class="form-control" >
+                        <input id="destinoNue" type="text"  placeholder="Dirección de destino" style="width: 100%;margin-top: 6px;" >
                     </div>
+					<br>
                     <div class="col-md-12">
-                        <input id="tramiteNue" type='checkbox'/>
-                        <strong>Incluye trámite</strong>
-                        <br>
-                        <input id="idavueltaNue" type='checkbox' />
-                        <strong>Ida y vuelta</strong>
+                        <input id="tramiteNue" data-role="switch"/>
+                        <b>Incluye trámite</b>
+                        <br><br>
+                        <input id="idavueltaNue" data-role="switch" />
+                        <b>Ida y vuelta</b>
                         <br><br>
                     </div>
                     <div class="col-md-12"> 
                         <textarea id="observacionesNue" class="form-control" rows="3" placeholder="Observaciones"></textarea> 
-
-						<input id="AceptaTerm" type='checkbox' />
-                        <strong>Acepta términos y condiciones</strong>
-                        <br><br>
-
 						<a  id="guardar" type="submit" class="btn btn-primary btn-block btn-lg">COTIZAR ENVÍO</a> 
                     </div>
                 </form>

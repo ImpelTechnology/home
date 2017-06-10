@@ -63,7 +63,7 @@ app.servicios = kendo.observable({
 
 							});
 							for (var i = 0; i < response.length; i++) {
-								if (response[i].RCliente == info.id) {
+								if (response[i].RCliente == portalUserId) {
 									arregloamostrar.push(response[i]);
 								}
 							}

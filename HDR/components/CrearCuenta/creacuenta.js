@@ -22,7 +22,7 @@ app.creacuenta = kendo.observable({
 
 function guardarnuevo() {
 	try {
-kendo.ui.progress($("#creacuenta"), true);
+		kendo.ui.progress($("#creacuenta"), true);
 		var contras = document.getElementById('contrase1').value;
 		var contras2 = document.getElementById('contrase2').value;
 		if (contras != contras2) {
@@ -41,8 +41,7 @@ kendo.ui.progress($("#creacuenta"), true);
 		}
 
 		var fijo = document.getElementById('tel').value;
-
-		var acepta = document.getElementById('aceptaterminos').checked;
+		var acepta = $("#aceptarterminos").data("kendoMobileSwitch").check();
 
 		var infousuario = [{
 			Contrase: contras,
@@ -57,94 +56,52 @@ kendo.ui.progress($("#creacuenta"), true);
 
 		if (acepta == false) {
 			mens(" Deberías aceptar nuestros términos y condiciones", "warning");
+			kendo.ui.progress($("#creacuenta"), false);
 		} else {
 			var inicias = "https://www.impeltechnology.com/rest/api/login?output=json&loginName=md5&password=wmunoz";
 			$.ajax({
 				url: inicias,
 				success: function (e) {
 					try {
-						if (e.status == "ok") {
-							var session = e.sessionId;
-							var urlencripta = "https://www.impeltechnology.com/rest/api/create2?output=json&useIds=true&objName=md5&Aencriptar=" + infousuario[0].Contrase + "&sessionId=" + session;
-							$.ajax({
-								url: urlencripta,
-								success: function (e) {
-									try {
-										if (e.status == "ok") {
-											var salt = "https://www.impeltechnology.com/rest/api/getRecord?sessionId=" + session + "&objName=md5&id=" + e.id + "&fieldList=id,encriptado,Salt&output=json";
+						var params = {
+							email: infousuario[0].Email,
+							Nombre: infousuario[0].Nombres,
+							Celular: infousuario[0].Telefono,
+							Razn_Social: infousuario[0].Razn_Social,
+							NIT: infousuario[0].NIT,
+							Direccin_Registrada: infousuario[0].Direccion,
+							Acepto_Trminos_y_Condiciones: acepta,
+							password: infousuario[0].Contrase,
+							loginName:infousuario[0].Email
+						};
+						//alert(inspeccionar(params));
+						var clienteNue = "https://www.impeltechnology.com/rest/api/create2?output=json&useIds=true&objName=Cliente1&sessionId=" + idsesion;
 
-											$.ajax({
-												url: salt,
-												success: function (e) {
-													try {
-														var params = {
-															email: infousuario[0].Email,
-															Clave: e.encriptado,
-															Sal: e.Salt,
-															Nombre: infousuario[0].Nombres,
-															Telefono: infousuario[0].Telefono,
-															Razn_Social: infousuario[0].Razn_Social,
-															NIT:infousuario[0].NIT,
-															Direccin_Registrada: infousuario[0].Direccion,
-															Acepto_Trminos_y_Condiciones: acepta
-															
-														};
-														//alert(inspeccionar(params));
-														var clienteNue = "https://www.impeltechnology.com/rest/api/create2?output=json&useIds=true&objName=Cliente1&sessionId=" + idsesion;
-
-														$.ajax({
-															url: clienteNue,
-															type: "POST",
-															data: params,
-															dataType: "json",
-															success: function (e) {
-																try {
-																	if (e.status == "ok") {
-																		mens(" Usuario creado correctamente", "success");
-																		kendo.mobile.application.navigate("components/home/ingreso.html");
-																		kendo.ui.progress($("#creacuenta"), true);
-																	}
-																} catch (h) {
-																	alert("h " + h);
-																}
-															},
-															error: function (d) {
-																try {
-																	var mensaje = JSON.parse(d.responseText);
-																	mens("d" + mensaje.message, "error");
-																} catch (i) {
-																	alert("i " + i);
-																}
-															}
-														});
-													} catch (h) {
-														alert("h " + h);
-													}
-												},
-												error: function (d) {
-													try {
-														var mensaje = JSON.parse(d.responseText);
-														alert(mensaje.message);
-													} catch (i) {
-														alert("i " + i);
-													}
-												}
-											});
-										}
-									} catch (h) {
-										alert("h " + h);
+						$.ajax({
+							url: clienteNue,
+							type: "POST",
+							data: params,
+							dataType: "json",
+							success: function (e) {
+								try {
+									if (e.status == "ok") {
+										mens(" Usuario creado correctamente", "success");
+										kendo.mobile.application.navigate("components/home/ingreso.html");
+										kendo.ui.progress($("#creacuenta"), true);
 									}
-								},
-								error: function (d) {
-									try {
-										var mensaje = JSON.parse(d.responseText);
-										alert(mensaje.message);
-									} catch (i) {
-										alert("i " + i);
-									}
+								} catch (h) {
+									alert("h " + h);
 								}
-							});
-						}
+							},
+							error: function (d) {
+								try {
+									var mensaje = JSON.parse(d.responseText);
+									mens("d" + mensaje.message, "error");
+								} catch (i) {
+									alert("i " + i);
+								}
+							}
+						});
 					} catch (h) {
 						alert("h " + h);
 					}

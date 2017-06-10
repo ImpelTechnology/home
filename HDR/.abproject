@@ -6,8 +6,8 @@
   "DisplayName": "Home Delivery",
   "Author": "Willberth Muñoz",
   "Description": "Home Delivery",
-  "BundleVersion": "4.0",
-  "AndroidVersionCode": "7",
+  "BundleVersion": "5.0",
+  "AndroidVersionCode": "8",
   "iOSDeviceFamily": [
     "1"
   ],

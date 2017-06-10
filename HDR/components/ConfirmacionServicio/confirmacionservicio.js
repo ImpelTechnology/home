@@ -5,7 +5,7 @@ app.confirmaservicio = kendo.observable({
 });
 function ConfirmarServC() {
 	try {
-		var urlconfirma = "https://www.impeltechnology.com/rest/api/update2?output=json&useIds=true&objName=Servicio&sessionId=" + idsesion + "&id=" + servcreado.id + "&status=Aceptado%20Cliente";
+		var urlconfirma = "https://www.impeltechnology.com/rest/api/update2?output=json&useIds=true&objName=Servicio&sessionId=" + idsesion + "&id=" + servcreado.id + "&status=Conductor%20Asignado";
 
 		$.ajax({
 			url: urlconfirma,
@@ -24,7 +24,7 @@ function ConfirmarServC() {
 				try {
 					var mensaje = JSON.parse(d.responseText);
 					if (mensaje.message == "El campo \"Cliente\" debe tener un valor") {
-						var urlconfirma = "https://www.impeltechnology.com/rest/api/update2?output=json&useIds=true&objName=Servicio&sessionId=" + idsesion + "&id=" + servcreado.id + "&status=Conductor%20Asignado" + "&RCliente=" + info.id;
+						var urlconfirma = "https://www.impeltechnology.com/rest/api/update2?output=json&useIds=true&objName=Servicio&sessionId=" + idsesion + "&id=" + servcreado.id + "&status=Conductor%20Asignado" + "&RCliente=" + portalUserId;
 						$.ajax({
 							url: urlconfirma,
 							async: false,
@@ -42,7 +42,7 @@ function ConfirmarServC() {
 							error: function (d) {
 								try {
 									var mensaje = JSON.parse(d.responseText);
-									alert(mensaje.message);
+									alert("ddddd"+mensaje.message);
 								} catch (i) {
 									alert("i " + i);
 								}
@@ -121,19 +121,17 @@ function buildMapconf2() {
 		var urlcreaserv = "https://www.impeltechnology.com/rest/api/create2?output=json&useIds=true&objName=Servicio&sessionId=" + idsesion;
 		var params =
 			[{
-				RCliente: info.id,
+				RCliente: portalUserId,
 				RProveedor: servicio.Proveedor,
 				RProductos: servicio.Producto,
 				Fecha: servicio.Fecharecoge,
 				Dorigen: servicio.LugarOrigen,
 				Ddestino: servicio.LugarDestino,
-				ResponsableO: servicio.Entrega,
-				ResponsableD: servicio.Recibe,
 				Observaciones: servicio.Observacion,
 				Incluye_Trmite: servicio.Tramite,
 				Ida_y_Vuelta: servicio.IdaVuelta
 			}];
-
+			
 		$.ajax({
 			url: urlcreaserv,
 			type: "POST",
@@ -157,7 +155,7 @@ function buildMapconf2() {
 						error: function (d) {
 							try {
 								var mensaje = JSON.parse(d.responseText);
-								alert(JSON.stringify(d));
+								alert("ddd"+JSON.stringify(d));
 							} catch (i) {
 								alert("i " + i);
 							}
@@ -169,7 +167,7 @@ function buildMapconf2() {
 				}
 			},
 			error: function (err) {
-				alert(JSON.stringify(err));
+				alert("kkk"+JSON.stringify(err));
 			}
 		});
 
@@ -438,8 +436,8 @@ function DibujarRuta(directionsService, directionsDisplay, origen, destino) {
 				if (status === google.maps.DirectionsStatus.OK) {
 					directionsDisplay.setDirections(response);
 				} else if (status == google.maps.DirectionsStatus.NOT_FOUND) {
+					mens("La dirección no puede ser encontrada.", "error");
 					kendo.mobile.application.navigate("#:back");
-					alert('La dirección no puede ser encontrada.');
 				}
 			});
 		} else {
@@ -451,8 +449,8 @@ function DibujarRuta(directionsService, directionsDisplay, origen, destino) {
 				if (status === google.maps.DirectionsStatus.OK) {
 					directionsDisplay.setDirections(response);
 				} else if (status == google.maps.DirectionsStatus.NOT_FOUND) {
+					mens("La dirección no puede ser encontrada.", "error");
 					kendo.mobile.application.navigate("#:back");
-					alert('La dirección no puede ser encontrada.');
 				}
 			});
 		}
@@ -481,7 +479,7 @@ function CalculateDistancia(origen, destino, idavuelta) {
 			avoidTolls: false
 		}, function (response, status) {
 			if (status !== google.maps.DistanceMatrixStatus.OK) {
-				alert('Confirmacion Error: ' + status);
+				//alert('Confirmacion Error: ' + status);
 			} else {
 				try {
 					var originList = response.originAddresses;
@@ -498,7 +496,7 @@ function CalculateDistancia(origen, destino, idavuelta) {
 						var duracionsec2 = response.rows[1].elements[1].duration.value;
 						var duraciontext2 = response.rows[0].elements[0].duration.text;
 
-						Distancia.innerHTML = "Ida: " + distancia + " en " + duraciontext + ", Vuelta: " + distancia2 + " en " + duraciontext2;
+						Distancia.innerHTML = "<b> Ida: </b>" + distancia + " en " + duraciontext + "<b>, Vuelta: </b>" + distancia2 + " en " + duraciontext2;
 
 						var fecharecogida = new Date(servicio.Fecharecoge);
 

@@ -1,12 +1,6 @@
-
 var oculta = 1;
 app.Menu = kendo.observable({
 	onInit: function () {
-		try {
-
-		} catch (d) {
-			alert("d " + d);
-		}
 	},
 	afterShow: function () { },
 	listViewClick: function (e) { },
@@ -22,42 +16,48 @@ app.Menu = kendo.observable({
 							sessionStorage.setItem("Productos", JSON.stringify(response));
 						}
 					} catch (h) {
-						alert("h2 " + h);
+						alert("E1 " + h);
 					}
 				},
 				error: function (d) {
-					mens(" Error al traer los productos " + d, "error");
+					mens("E2 Error al traer los productos " + d, "error");
 				}
 			});
 
-			var info = JSON.parse(sessionStorage.getItem("perfil"));
 
-			var urlverfi = "https://www.impeltechnology.com/rest/api/getPage?output=json&startRow=0&rowsPerPage=10&viewId=Pyqkltp8Rbi8BAh21Wpodw&objName=Servicio&sessionId=" + idsesion;
+			var datos = {
+				query: "select RCliente from Servicio where status=5882921 and RCliente=" + portalUserId,
+				sessionId: idsesion,
+				startRow: 0,
+				maxRows: 100,
+				output: "json"
+			};
+
+			var Datos = [];
 			$.ajax({
-				url: urlverfi,
-				success: function (response) {
+				url: "https://www.impeltechnology.com/rest/api/selectQuery",
+				type: "GET",
+				dataType: "json",
+				data: datos,
+				async: false,
+				success: function (data) {
 					try {
-						if (response) {
-							for (var i = 0; i < response.length; i++) {
-								if ((response[i].RCliente == info.id) && (response[i].status == "Recogido")) {
-									oculta = 0;
-									break;
-								}
-							}
-							if (oculta == 0) {
-								var x = document.getElementById("reastreo");
-								x.style.display = "";
-								var y = document.getElementById("reastreo2");
-								y.style.display = "";
-							}
+						if (data!="") {
+							var x = document.getElementById("reastreo");
+							x.style.display = "";
+							var y = document.getElementById("reastreo2");
+							y.style.display = "";
 						}
-					} catch (h) {
-						alert("h2 " + h);
+					} catch (e) {
+						alert("asd" + e);
 					}
 				},
-				error: function (d) {
+				error: function (err) {
+					alert("asd:    a" + JSON.stringify(err));
 				}
 			});
+
+			//**********************************************
 
 		} catch (d) {
 			if (d == "SyntaxError: Unexpected token u in JSON at position 0") {
@@ -74,7 +74,7 @@ function servicios() {
 		kendo.ui.progress($("#menulist"), true);
 		window.location = "index.html#components/Servicios/servicios.html";
 	} catch (h) {
-		alert("h " + h);
+		alert("E4 " + h);
 	}
 }
 
@@ -83,14 +83,14 @@ function nuevoservicio() {
 		kendo.ui.progress($("#menulist"), true);
 		window.location = "index.html#components/NuevoServicio/nuevoservicio.html";
 	} catch (h) {
-		alert("h " + h);
+		alert("E5 " + h);
 	}
 }
 function rastrearservicio() {
 	try {
 		window.location = "index.html#components/Rastrear/rastrear.html";
 	} catch (p) {
-		alert(p);
+		alert("E6 " + p);
 	}
 }
 
@@ -98,7 +98,7 @@ function iraperfil() {
 	try {
 		window.location = "index.html#components/Perfil/perfil.html";
 	} catch (p) {
-		alert(p);
+		alert("E7 " + p);
 	}
 }
 function salir() {

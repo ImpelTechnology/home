@@ -1,20 +1,74 @@
-var perfil;
+var perfil = [];
 app.editarperfil = kendo.observable({
 	onInit: function () { },
 	afterShow: function () { },
 	onShow: function () {
 		try {
-			perfil = JSON.parse(sessionStorage.getItem("perfil"));
 
-			if(!perfil.Celular){
-				perfil.Celular="";
-			}
-			if(!perfil.Direccin_Registrada){
-				perfil.Direccin_Registrada="";
-			}
+			var datos = {
+				query: "select email,Direccin_Registrada,Telefono,Celular,Nombre,Identificacion,id from Cliente1 where id=" + portalUserId,
+				sessionId: idsesion,
+				startRow: 0,
+				maxRows: 1,
+				output: "json"
+			};
+
+			$.ajax({
+				url: "https://www.impeltechnology.com/rest/api/selectQuery",
+				type: "GET",
+				dataType: "json",
+				data: datos,
+				async: false,
+				success: function (data) {
+					try {
+						$.each(data, function (index, item) {
+							if (item[0] != null) {
+								perfil.email = item[0];
+							} else {
+								perfil.email = "";
+							}
+							if (item[1] != null) {
+								perfil.Direccin_Registrada = item[1];
+							} else {
+								perfil.Direccin_Registrada = "";
+							}
+							if (item[2] != null) {
+								perfil.Telefono = item[2];
+							} else {
+								perfil.Telefono = "";
+							}
+							if (item[3] != null) {
+								perfil.Celular = item[3];
+							} else {
+								perfil.Celular = "";
+							}
+							if (item[4] != null) {
+								perfil.name = item[4];
+							} else {
+								perfil.name = "";
+							}
+							if (item[5] != null) {
+								perfil.Ident = item[5];
+							} else {
+								perfil.Ident = "";
+							}
+							if (item[6] != null) {
+								perfil.Id = item[6];
+							} else {
+								perfil.Id = "";
+							}
+						});
+					} catch (e) {
+						alert("asd" + e);
+					}
+				},
+				error: function (err) {
+					alert("asd:    a" + JSON.stringify(err));
+				}
+			});
 
 			document.getElementById('nombreed').value = perfil.name;
-			document.getElementById('identied').value = perfil.Identificacion;
+			document.getElementById('identied').value = perfil.Ident;
 			document.getElementById('emailed').value = perfil.email;
 			document.getElementById('telefonoed').value = perfil.Telefono;
 			document.getElementById('celulared').value = perfil.Celular;
@@ -57,7 +111,7 @@ app.editarperfil = kendo.observable({
 			if ((cliente[0].Direccion).indexOf("#") != -1) {
 				cliente[0].Direccion = (cliente[0].Direccion).replace("#", "No. ");
 			}
-			var actcliente = "https://www.impeltechnology.com/rest/api/update2?output=json&useIds=true&objName=Cliente1&sessionId=" + idsesion + "&id=" + perfil.id;
+			var actcliente = "https://www.impeltechnology.com/rest/api/update2?output=json&useIds=true&objName=Cliente1&sessionId=" + idsesion + "&id=" + portalUserId;
 			var params = "&Identificacion=" + cliente[0].Identificacion + "&email=" + cliente[0].Email + "&Telefono=" + cliente[0].TelFijo + "&Celular=" + cliente[0].Celular + "&Direccin_Registrada=" + cliente[0].Direccion;
 			actcliente = actcliente + params;
 
@@ -74,7 +128,7 @@ app.editarperfil = kendo.observable({
 							perfil.Telefono = cliente[0].TelFijo;
 							perfil.Celular = cliente[0].Celular;
 							perfil.Direccin_Registrada = cliente[0].Direccion;
-							
+
 							sessionStorage.setItem("perfil", JSON.stringify(perfil));
 
 							kendo.mobile.application.navigate("components/Perfil/perfil.html");
@@ -121,7 +175,7 @@ function subirfoto(picture, nombre, tipo, tamano) {
 		var sessionId = idsesion;
 
 		var content = {
-			"id": perfil.id,
+			"id": portalUserId,
 			"fieldName": "Foto",
 			"fileName": nombre,
 			"contentType": tipo,

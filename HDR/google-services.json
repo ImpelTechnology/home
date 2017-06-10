@@ -1,0 +1,45 @@
+{
+  "project_info": {
+    "project_number": "332804486068",
+    "firebase_url": "https://homedelivery-25915.firebaseio.com",
+    "project_id": "homedelivery-25915",
+    "storage_bucket": "homedelivery-25915.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332804486068:android:5f73b01f9dc999c9",
+        "android_client_info": {
+          "package_name": "com.telerik.HomeDelivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332804486068-6smbm5cgppsignpmubagagd41mu73qvh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWwlOuDZIE9_yLB3B3PtrcpJeMdc2HKQc"
+        },
+        {
+          "current_key": "AIzaSyC0Mqzj6DLzKQ6Uy9z4Aon2Ea0dFGH_e9A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

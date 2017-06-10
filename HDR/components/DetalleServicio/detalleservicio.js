@@ -35,20 +35,21 @@ function buildMap() {
 		var fecha1 = new Date(servicio.Fecha);
 		fecha1 = ("00" + (fecha1.getMonth() + 1)).slice(-2) + "/" + ("00" + fecha1.getDate()).slice(-2) + "/" + fecha1.getFullYear() + " " + ("00" + fecha1.getHours()).slice(-2) + ":" + ("00" + fecha1.getMinutes()).slice(-2) + ":" + ("00" + fecha1.getSeconds()).slice(-2);
 
-		document.getElementById('fecha').innerHTML = "Fecha: " + fecha1;
+		document.getElementById('fecha').innerHTML = fecha1;
 		document.getElementById('origen').innerHTML = servicio.Dorigen;
 		document.getElementById('destino').innerHTML = servicio.Ddestino;
 		//document.getElementById('responsable').innerHTML = servicio.ResponsableD;
-		document.getElementById('precio').innerHTML = "Costo envío: " + servicio.precio;
+		document.getElementById('precioDato').innerHTML = servicio.precio;
 		document.getElementById('tipoProd').innerHTML = servicio.RProductos;
 		document.getElementById('estado').innerHTML = servicio.status;
 
 		if (tramite) {
-			document.getElementById('tramite').innerHTML = "Incluye Trámite";
+			document.getElementById('tramite').innerHTML = "<b>Incluye Trámite</b>";
 		} else {
-			document.getElementById('tramite').innerHTML = "No incluye trámite";
+			document.getElementById('tramite').innerHTML = "<b>No incluye trámite</b>";
 		}
 		var origen = servicio.Dorigen;
+
 		//***************************************
 		var mapOptions = {
 			zoom: 15,
@@ -225,9 +226,9 @@ function calculardistancia(origen, destino, idavuelta) {
 					var distancia2 = response.rows[1].elements[1].distance.text;
 					var duracion2 = response.rows[1].elements[1].duration.text;
 
-					outputDiv.innerHTML = "Ida: " + distancia + ", Vuelta: " + distancia2;
+					outputDiv.innerHTML = '<b> Ida: </b><div class="black">' + distancia + '</div>' + '<b>Vuelta: </b><div class="black">' +distancia2 +'</div>';
 				} else {
-					outputDiv.innerHTML = "Trayecto: " + distancia;
+					outputDiv.innerHTML = "<b>Trayecto: </b>" + '<div class="black">'+distancia+'</div>';
 				}
 			}
 		});

@@ -59,7 +59,7 @@ app.rastrear = kendo.observable({
                                 /*if ((response[i].RCliente == info.id)&&(response[i].status == "Recogido")) {
                                     servAct.push(response[i]);
                                 }*/
-                                if ((response[i].RCliente == info.id)&&(response[i].status == "Recogido")) {
+                                if ((response[i].RCliente == portalUserId)&&(response[i].status == "Recogido")) {
                                     servAct.push(response[i]);
                                 }
                             }
