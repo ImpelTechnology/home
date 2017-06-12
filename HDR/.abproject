@@ -6,13 +6,16 @@
   "DisplayName": "Home Delivery",
   "Author": "Willberth Muñoz",
   "Description": "Home Delivery",
-  "BundleVersion": "5.0",
-  "AndroidVersionCode": "8",
+  "BundleVersion": "4.1",
+  "AndroidVersionCode": "9",
   "iOSDeviceFamily": [
     "1"
   ],
   "iOSBackgroundMode": [
-    "fetch"
+    "audio",
+    "location",
+    "fetch",
+    "remote-notification"
   ],
   "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
   "FrameworkVersion": "6.4.0",
@@ -42,5 +45,15 @@
     "ID_RESOLUTION_WVGA",
     "ID_RESOLUTION_WXGA",
     "ID_RESOLUTION_HD720P"
-  ]
+  ],
+  "CordovaPluginVariables": {
+    "cordova-plugin-camera": {
+      "CAMERA_USAGE_DESCRIPTION": "profile image upload",
+      "PHOTOLIBRARY_USAGE_DESCRIPTION": "profile image upload"
+    },
+    "cordova-plugin-media-capture": {
+      "CAMERA_USAGE_DESCRIPTION": "profile image upload",
+      "PHOTOLIBRARY_USAGE_DESCRIPTION": "profile image upload"
+    }
+  }
 }

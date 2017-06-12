@@ -18,9 +18,9 @@ app.editarlugar = kendo.observable({
 	},
 	afterShow: function () { },
 	guardarLugar: function () {
+		try{
 		var nombre = document.getElementById("nombrelugar").value;
 		var direccionNu = document.getElementById("direccioneditarlugar").value;
-		var info = JSON.parse(sessionStorage.getItem("perfil"));
 
 		if (direccion.Nombre == "Agregar Nueva Dirección") {
 			var acc = " creó ";
@@ -31,7 +31,7 @@ app.editarlugar = kendo.observable({
 				sessionId: idsesion,
 				Nombre: nombre,
 				streetAddr1: direccionNu,
-				RCliente: info.id
+				RCliente: portalUserId
 			}];
 			var urldir = "https://www.impeltechnology.com/rest/api/create2"
 		} else {
@@ -67,6 +67,9 @@ app.editarlugar = kendo.observable({
 				alert(eror.message);
 			}
 		});
+		}catch(o){
+			alert(o);
+		}	
 	}
 
 });

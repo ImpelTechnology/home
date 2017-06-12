@@ -103,7 +103,7 @@ app.nuevoservicio = kendo.observable({
 			});
 			//***********************************************
 			var startDateReference = $("#fecharecogeNue").kendoDateTimePicker({
-				format: "dd/MM/yyyy hh:mm tt"
+				format: "MM/dd/yyyy hh:mm tt"
 			}).data("kendoDateTimePicker");
 
 			startDateReference.timeView.setOptions({ min: new Date(2000, 0, 1, 5, 00, 0), max: new Date(2000, 0, 1, 19, 00, 0) });

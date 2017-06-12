@@ -116,7 +116,6 @@ function buildMapconf2() {
 		DibujarRuta(directionsService21, directionsDisplay21, origen, destino);
 
 		CalculateDistancia(origen, destino, idavuelta);
-		info = JSON.parse(sessionStorage.getItem("perfil"));
 
 		var urlcreaserv = "https://www.impeltechnology.com/rest/api/create2?output=json&useIds=true&objName=Servicio&sessionId=" + idsesion;
 		var params =
@@ -131,7 +130,6 @@ function buildMapconf2() {
 				Incluye_Trmite: servicio.Tramite,
 				Ida_y_Vuelta: servicio.IdaVuelta
 			}];
-			
 		$.ajax({
 			url: urlcreaserv,
 			type: "POST",

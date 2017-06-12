@@ -1,4 +1,4 @@
-var idsesion, password, loginName, imagenfoto, notificationWidget;
+var idsesion, password, loginName, imagenfoto, notificationWidget,pushToken;
 
 (function () {
 	var app = {
@@ -148,4 +148,3 @@ function cambiarporvacio(valor){
 		return("");
 	}
 }
-// END_CUSTOM_CODE_kendoUiMobileApp

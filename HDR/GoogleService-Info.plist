@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>332804486068-q0k3fq9crkn42qi8k52d713oc48n3qe1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.332804486068-q0k3fq9crkn42qi8k52d713oc48n3qe1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA1aRD8gp--d9p-wiFfO7W2vPItpQP96ks</string>
+	<key>GCM_SENDER_ID</key>
+	<string>332804486068</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.telerik.HomeDelivery</string>
+	<key>PROJECT_ID</key>
+	<string>homedelivery-25915</string>
+	<key>STORAGE_BUCKET</key>
+	<string>homedelivery-25915.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:332804486068:ios:5f73b01f9dc999c9</string>
+	<key>DATABASE_URL</key>
+	<string>https://homedelivery-25915.firebaseio.com</string>
+</dict>
+</plist>

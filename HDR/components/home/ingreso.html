@@ -1,4 +1,4 @@
-<div data-role="view" data-title="Home View" data-layout="main" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow" data-before-show="app.home.before" id="homeScreen" class="screen" >
+<div data-role="view" data-title="Home View" data-layout="main" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow" data-before-show="app.home.before" id="homeScreen" class="screen" data-init="app.home.init">
 
     <!-- START_CUSTOM_CODE_home -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
@@ -12,13 +12,15 @@
 
     <div class="container" id ="con" style="margin-top:15px;">
         <form class="form-signin">
-            <label for="usuario" class="sr-only">Usuario</label>
-            <input type="email" id="usuario" class="form-control text-center" placeholder="Email">
+            <label for="usuario" class="sr-only">Email</label>
+
+            <input type="email" id="usuario" class="text-center" style="width: 100%;margin-top: 6px;" placeholder="E-mail">
 
             <label for="contrase" class="sr-only">Contraseña</label>
-            <input type="password" id="contrase" class="form-control text-center" placeholder="Contraseña" >
 
-			<a id="linko" class="btn-link  text-center" style="display:inline-block; width:100%" onclick="recordarC()">¿Olvidaste tu contraseña?</a>
+            <input type="password" id="contrase" class="text-center" style="width: 100%;margin-top: 6px;" placeholder="Contraseña" >
+
+			<a id="linko" class="btn-link  text-center" style="display:inline-block; width:100%;margin-top: 6px;" onclick="recordarC()">¿Olvidaste tu contraseña?</a>
 			<br>
 			<br>
             <a class="btn btn-lg btn-primary btn-block" type="submit" onclick="IniciarSesion()">INGRESAR</a>
